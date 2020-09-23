@@ -21,36 +21,53 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    Sprite *sprite = Sprite::create("HelloWorld.png");
-    sprite->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
-    this->addChild(sprite);
+    sprite = Sprite::create("Scale_9_Sprite.png");
+    sprite->setPosition(Vec2(visibleSize.width/1.5,visibleSize.height/1.2));
+    this->addChild(sprite,1);
 
     label = Label::createWithTTF("","fonts/arial.ttf",30);
-    label->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
-    this->addChild(label);
+    label->setPosition(Vec2(visibleSize.width/1.5,visibleSize.height/1.2));
+    label->setColor(Color3B(0,0,0));
+    this->addChild(label,2);
 
-    int a= 10;
-    __String *string = __String::createWithFormat("gfsgsfgd_%d",a);
+    label2 = Label::createWithTTF("","fonts/arial.ttf",30);
+    label2->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
+    label2->setColor(Color3B(255,255,255));
+    this->addChild(label2,3);
+
+    a=0;
+    __String *string = __String::createWithFormat("%d",a);
     label->setString(string->getCString());
+
 
 
 //    label->setTextColor(Color4B())
 
-        MenuItemImage *menuItemImage = MenuItemImage::create("HelloWorld.png","HelloWorld.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage->setPosition(Vec2(visibleSize.width/2,visibleSize.height*0.30));
-    this->addChild(menuItemImage);
+    menuItemImage = MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage->setPosition(Vec2(visibleSize.width/3,visibleSize.height*0.60));
     menuItemImage->setTag(1);
 
-    MenuItemImage *menuItemImage1 = MenuItemImage::create("HelloWorld.png","HelloWorld.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage1->setPosition(Vec2(visibleSize.width/2,visibleSize.height*0.40));
-    this->addChild(menuItemImage1);
+    label3 = Label::createWithTTF("+","fonts/arial.ttf",30);
+    label3->setPosition(Vec2(visibleSize.width/3,visibleSize.height*0.60));
+    label3->setColor(Color3B(0,0,0));
+    this->addChild(label3,2);
+
+    menuItemImage1 = MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage1->setPosition(Vec2(visibleSize.width/1,visibleSize.height*0.60));
     menuItemImage1->setTag(2);
 
-    MenuItemImage *menuItemImage2 = MenuItemImage::create("HelloWorld.png","HelloWorld.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage2->setPosition(Vec2(visibleSize.width/2,visibleSize.height*0.50));
-    this->addChild(menuItemImage2);
-    menuItemImage2->setTag(3);
+    label4 = Label::createWithTTF("-","fonts/arial.ttf",30);
+    label4->setPosition(Vec2(visibleSize.width/1,visibleSize.height*0.60));
+    label4->setColor(Color3B(0,0,0));
+    this->addChild(label4,2);
 
+//    MenuItemImage *menuItemImage2 = MenuItemImage::create("HelloWorld.png","HelloWorld.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage2->setPosition(Vec2(visibleSize.width/4,visibleSize.height*0.0));
+//    menuItemImage2->setTag(3);
+
+    Menu *menu = Menu::create(menuItemImage,menuItemImage1, nullptr);
+    menu->setPosition(Vec2(0,0));
+    this->addChild(menu);
 //    /////////////////////////////
 //    // 2. add a menu item with "X" image, which is clicked to quit the program
 //    //    you may modify it.
@@ -120,14 +137,66 @@ bool HelloWorld::init()
 
 void HelloWorld::callFunction(Ref *ref) {
 
-    MenuItemImage *menuItemImage = (MenuItemImage*)ref;
-    int tag = menuItemImage->getTag();
-    if(tag == 1){
+    menuItemImage2 = (MenuItemImage*)ref;
+    int tag = menuItemImage2->getTag();
 
-
+    if(tag == 1)
+    {
+        if(a==20) {
+            label2->setVisible(true);
+            menuItemImage->setEnabled(false);
+            menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+            __String *string = __String::create("You can't go above 20");
+            label2->setString(string->getCString());
+        }
+        else if(a!=20){
+            label2->setVisible(false);
+            menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+            menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+            menuItemImage->setEnabled(true);
+            menuItemImage1->setEnabled(true);
+            a++;
+            if(a==20)
+            {
+                label2->setVisible(true);
+                menuItemImage->setEnabled(false);
+                menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+                label2->setString("You can't go above 20");
+            }
+            __String *string = __String::createWithFormat("%d",a);
+            label->setString(string->getCString());
+        }
     }
-    std::string sdgs  = "dhfgjsdgfk";
-    log("gjsdfjhds %s",sdgs.c_str());
+    else if(tag==2)
+    {
+        if(a==0)
+        {
+            label2->setVisible(true);
+            menuItemImage1->setEnabled(false);
+            menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+            __String *string = __String::create("You can't go below 0");
+            label2->setString(string->getCString());
+        } else if(a!=0){
+            label2->setVisible(false);
+            menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+            menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+            menuItemImage->setEnabled(true);
+            menuItemImage1->setEnabled(true);
+            a--;
+            if(a==0)
+            {
+                label2->setVisible(true);
+                menuItemImage1->setEnabled(false);
+                menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+                __String *string = __String::create("You can't go below 0");
+                label2->setString(string->getCString());
+            }
+            __String *string = __String::createWithFormat("%d",a);
+            label->setString(string->getCString());
+        }
+    }
+//    std::string sdgs  = "dhfgjsdgfk";
+//    log("gjsdfjhds %s",sdgs.c_str());
 
 }
 

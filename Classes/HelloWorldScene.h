@@ -31,10 +31,10 @@ USING_NS_CC;
 class HelloWorld : public cocos2d::Scene
 {
 private:
-    Label *label,*label2;
+    Label *label,*label2,*label5;
     MenuItemImage *menuItemImage,*menuItemImage1,*menuItemImage2;
-    int a;
-    Sprite *sprite;
+    int a,b,count;
+    Sprite *sprite,*sprite2;
 public:
     static cocos2d::Scene* createScene();
 

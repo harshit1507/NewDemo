@@ -47,7 +47,7 @@ bool HelloWorld::init()
     menuItemImage->setPosition(Vec2(visibleSize.width/3,visibleSize.height*0.60));
     menuItemImage->setTag(1);
 
-    label3 = Label::createWithTTF("+","fonts/arial.ttf",30);
+    Label *label3 = Label::createWithTTF("+","fonts/arial.ttf",30);
     label3->setPosition(Vec2(visibleSize.width/3,visibleSize.height*0.60));
     label3->setColor(Color3B(0,0,0));
     this->addChild(label3,2);
@@ -56,7 +56,7 @@ bool HelloWorld::init()
     menuItemImage1->setPosition(Vec2(visibleSize.width/1,visibleSize.height*0.60));
     menuItemImage1->setTag(2);
 
-    label4 = Label::createWithTTF("-","fonts/arial.ttf",30);
+    Label *label4 = Label::createWithTTF("-","fonts/arial.ttf",30);
     label4->setPosition(Vec2(visibleSize.width/1,visibleSize.height*0.60));
     label4->setColor(Color3B(0,0,0));
     this->addChild(label4,2);

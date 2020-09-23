@@ -2,7 +2,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 
-USING_NS_CC;
 
 Scene* HelloWorld::createScene()
 {
@@ -24,7 +23,33 @@ bool HelloWorld::init()
 
     Sprite *sprite = Sprite::create("HelloWorld.png");
     sprite->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
-    this->addChild(sprite,1);
+    this->addChild(sprite);
+
+    label = Label::createWithTTF("","fonts/arial.ttf",30);
+    label->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
+    this->addChild(label);
+
+    int a= 10;
+    __String *string = __String::createWithFormat("gfsgsfgd_%d",a);
+    label->setString(string->getCString());
+
+
+//    label->setTextColor(Color4B())
+
+        MenuItemImage *menuItemImage = MenuItemImage::create("HelloWorld.png","HelloWorld.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage->setPosition(Vec2(visibleSize.width/2,visibleSize.height*0.30));
+    this->addChild(menuItemImage);
+    menuItemImage->setTag(1);
+
+    MenuItemImage *menuItemImage1 = MenuItemImage::create("HelloWorld.png","HelloWorld.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage1->setPosition(Vec2(visibleSize.width/2,visibleSize.height*0.40));
+    this->addChild(menuItemImage1);
+    menuItemImage1->setTag(2);
+
+    MenuItemImage *menuItemImage2 = MenuItemImage::create("HelloWorld.png","HelloWorld.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage2->setPosition(Vec2(visibleSize.width/2,visibleSize.height*0.50));
+    this->addChild(menuItemImage2);
+    menuItemImage2->setTag(3);
 
 //    /////////////////////////////
 //    // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -92,6 +117,19 @@ bool HelloWorld::init()
     return true;
 }
 
+
+void HelloWorld::callFunction(Ref *ref) {
+
+    MenuItemImage *menuItemImage = (MenuItemImage*)ref;
+    int tag = menuItemImage->getTag();
+    if(tag == 1){
+
+
+    }
+    std::string sdgs  = "dhfgjsdgfk";
+    log("gjsdfjhds %s",sdgs.c_str());
+
+}
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {

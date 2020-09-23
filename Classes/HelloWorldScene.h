@@ -26,9 +26,12 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+USING_NS_CC;
 
 class HelloWorld : public cocos2d::Scene
 {
+private:
+    Label *label;
 public:
     static cocos2d::Scene* createScene();
 
@@ -36,7 +39,8 @@ public:
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
-    
+
+    void callFunction(Ref *ref);
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 };

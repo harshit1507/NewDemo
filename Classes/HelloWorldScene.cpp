@@ -151,35 +151,49 @@ bool HelloWorld::init()
 void HelloWorld::callFunction(Ref *ref) {
 
 
-    menuItemImage2 = (MenuItemImage*)ref;
+    MenuItemImage *menuItemImage2 = (MenuItemImage*)ref;
     int tag = menuItemImage2->getTag();
 
     if(tag == 1)
     {
-        count=1;
-        if(a==20) {
+        if(b>20)
+        {
             label2->setVisible(true);
             menuItemImage->setEnabled(false);
             menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
             __String *string = __String::create("You need to subtract then go forward");
             label2->setString(string->getCString());
         }
-        else if(a!=20){
-            __String *string = __String::createWithFormat("%d",a);
-            label->setString(string->getCString());
-            label2->setVisible(false);
-            menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
-            menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
-            menuItemImage->setEnabled(true);
-            menuItemImage1->setEnabled(true);
-            a++;
-//            if(a==20)
-//            {
-//                label2->setVisible(true);
-//                menuItemImage->setEnabled(false);
-//                menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
-//                label2->setString("You need to subtract then go forward");
-//            }
+        if(a<21)
+        {
+            if(b<21)
+            {
+                if (count == 0)
+                {
+                    count = 1;
+                    a = b;
+                    __String *string = __String::createWithFormat("%d", a);
+                    label->setString(string->getCString());
+                }
+                else if (count == 1 && a<20)
+                {
+                    a++;
+                    __String *string = __String::createWithFormat("%d", a);
+                    label->setString(string->getCString());
+                    label2->setVisible(false);
+                    menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+                    menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+                    menuItemImage->setEnabled(true);
+                    menuItemImage1->setEnabled(true);
+                }
+            }
+            else if(b>20)
+            {
+                label2->setVisible(true);
+                menuItemImage->setEnabled(false);
+                menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+                label2->setString("You need to subtract then go forward");
+            }
 //            string = __String::createWithFormat("%d",a);
 //            label->setString(string->getCString());
 
@@ -195,39 +209,51 @@ void HelloWorld::callFunction(Ref *ref) {
                 __String *string = __String::createWithFormat("%d", b);
                 label5->setString(string->getCString());
                 count=0;
+                label2->setVisible(false);
+                menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+                menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+                menuItemImage->setEnabled(true);
             }
-//            label2->setVisible(true);
-//            menuItemImage1->setEnabled(false);
-//            menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
-//            __String *string = __String::create("You can't go below 0");
-//            label2->setString(string->getCString());
-        } else if(b!=0){
+            if(b==0)
+            {
+                label2->setVisible(true);
+                menuItemImage1->setEnabled(false);
+                menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+                __String *string = __String::create("You can't go below 0");
+                label2->setString(string->getCString());
+            }
+        }
+        else if(b!=0)
+        {
             label2->setVisible(false);
             menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
             menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
             menuItemImage->setEnabled(true);
             menuItemImage1->setEnabled(true);
-            if(count==1) {
+            if(count==1)
+            {
                 count = 0;
                 b += a;
                 __String *string = __String::createWithFormat("%d", b);
                 label5->setString(string->getCString());
             }
-             else {
+            else if(count==0)
+                {
 
-                b--;
-//            if(b==0)
-//            {
-//                label2->setVisible(true);
-//                menuItemImage1->setEnabled(false);
-//                menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
-//                __String *string = __String::create("You can't go below 0");
-//                label2->setString(string->getCString());
-//                b+=a;
-//            }
-                __String *string = __String::createWithFormat("%d", b);
-                label5->setString(string->getCString());
-            }
+                    b--;
+                    __String *string = __String::createWithFormat("%d", b);
+                    label5->setString(string->getCString());
+                    if(b==0)
+                    {
+                        label2->setVisible(true);
+                        menuItemImage1->setEnabled(false);
+                        menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+                        __String *string = __String::create("You can't go below 0");
+                        label2->setString(string->getCString());
+                        string = __String::createWithFormat("%d", b);
+                        label5->setString(string->getCString());
+                    }
+                }
         }
         if(b<21)
         {

@@ -32,7 +32,7 @@ class HelloWorld : public cocos2d::Scene
 {
 private:
     Label *label,*label2,*label5;
-    MenuItemImage *menuItemImage,*menuItemImage1,*menuItemImage2;
+    MenuItemImage *menuItemImage,*menuItemImage1;
     int a,b,count;
     Sprite *sprite,*sprite2;
 public:

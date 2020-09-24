@@ -35,6 +35,8 @@ private:
     MenuItemImage *menuItemImage,*menuItemImage1;
     int a,b,count;
     Sprite *sprite,*sprite2;
+    RotateBy *rotateBy;
+    MoveTo *moveTo,*moveTo1;
 public:
     static cocos2d::Scene* createScene();
 
@@ -44,6 +46,7 @@ public:
     void menuCloseCallback(cocos2d::Ref* pSender);
 
     void callFunction(Ref *ref);
+    void callFunction1();
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 };

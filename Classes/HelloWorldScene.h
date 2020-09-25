@@ -31,9 +31,9 @@ USING_NS_CC;
 class HelloWorld : public cocos2d::Scene
 {
 private:
-    Label *label2,*label3;
+    Label *label3,*label4,*label5,*label2;
     MenuItemImage *menuItemImage,*menuItemImage1,*menuItemImage2,*menuItemImage3;
-    int a,b,count;
+    int a,b,count,c ;
     Sprite *sprite,*sprite2;
     RotateBy *rotateBy;
     MoveTo *moveTo,*moveTo1;
@@ -48,6 +48,7 @@ public:
 
     void callFunction(Ref *ref);
     void callFunction1();
+    void callScheduleCall(float dt);
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 };

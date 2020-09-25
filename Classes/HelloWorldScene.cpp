@@ -21,12 +21,35 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+
+
 //    CallFunc *callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::callFunction1,this));
 //
 //
-//    sprite = Sprite::create("dot.png");
-//    sprite->setPosition(Vec2(visibleSize.width*.6,visibleSize.height*0));
+//    sprite = Sprite::create("bar.png");
+//    sprite->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.8));
 //    this->addChild(sprite,1);
+
+    sprite = Sprite::create("button1.png");
+    progressTimer=ProgressTimer::create(sprite);
+    progressTimer->setType(ProgressTimer::Type::RADIAL);
+    progressTimer->setPosition(Vec2(visibleSize.width*.6,visibleSize.height*.8));
+//    progressTimer->setBarChangeRate(Vec2(1,0));
+//    progressTimer->setMidpoint(Vec2(0,0));
+//    progressTimer->setPercentage(100);
+    progressTimer->setScale(2);
+
+    this->addChild(progressTimer,1);
+
+//    ProgressTo *progressTo = ProgressTo::create(5,100);
+//    progressTimer->runAction(progressTo);
+
+//    ProgressFromTo *progressFromTo = ProgressFromTo::create(10,0,100);
+//    progressTimer->runAction(progressFromTo);
+
+
+//    ProgressTo *progressTo = ProgressTo::create(3,70);
+//    sprite->runAction(ProgressTo::create(3,70));
 //
 //    pointArray->addControlPoint(Vec2(visibleSize.width*.5,visibleSize.height*.5));
 //    pointArray->addControlPoint(sprite->getPosition()+Vec2(260,170));
@@ -293,6 +316,8 @@ bool HelloWorld::init()
 //        // add the sprite as a child to this layer
 //        this->addChild(sprite, 0);
 //    }
+
+//
 //    a=0;
 //    b=0;
 //    c=0;
@@ -311,6 +336,8 @@ bool HelloWorld::init()
     string = __String::createWithFormat("%02d",c);
     label5->setString(string->getCString());
 
+    per=UserDefault::getInstance()->getFloatForKey("p",100.0);
+
 this->schedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall),1);
 //int a=UserDefault::getInstance()->getIntegerForKey("teeye",0);
 //a++;
@@ -323,6 +350,8 @@ void  HelloWorld::callScheduleCall(float dt){
 
     log("hbfjsdffhfgfgfdg");
 
+//    ProgressFromTo *progressFromTo = ProgressFromTo::create(5,30,80);
+//    progressTimer->runAction(progressFromTo);
 
     if(c==59)
     {
@@ -367,6 +396,10 @@ void  HelloWorld::callScheduleCall(float dt){
             __String *string = __String::createWithFormat("%02d", c);
             label5->setString(string->getCString());
             UserDefault::getInstance()->setIntegerForKey("s", c);
+            progressTimer->setPercentage(per);
+            ProgressFromTo *progressTo = ProgressFromTo::create(1,per,per-(((float)c)/.60));
+            UserDefault::getInstance()->setFloatForKey("p",per-(((float)c)/.60));
+            progressTimer->runAction(progressTo);
         }
     }
 

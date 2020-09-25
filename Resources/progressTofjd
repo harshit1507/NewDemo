@@ -1,0 +1,27 @@
+health_bar_img = Sprite::create(
+				"barTop.png");
+
+		progressHealth = ProgressTimer::create(health_bar_img);
+
+		progressHealth->setType(ProgressTimer::Type::BAR);
+
+		progressHealth->setPosition(
+				Vec2(health_prograssive_back->getContentSize().width * 0.50,
+						health_prograssive_back->getContentSize().height * 0.50));
+
+		progressHealth->setBarChangeRate(Vec2(1, 0));
+
+		progressHealth->setMidpoint(Vec2(0.0f, 0));
+
+		health_prograssive_back->addChild(progressHealth, 1);
+
+
+
+ProgressFromTo *progressset = ProgressFromTo::create(0.5,progresstime_dafault->getPercentage(),set_bar_img);
+	progresstime_dafault->runAction(progressset);
+
+
+
+
+progressH = ProgressTo::create(stopbar,0);
+			progressHealth->runAction(progressH);

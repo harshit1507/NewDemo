@@ -26,18 +26,22 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "ui/CocosGUI.h"
 USING_NS_CC;
-
+using namespace ui;
+using namespace cocos2d;
 class HelloWorld : public cocos2d::Scene
 {
 private:
     Label *label3,*label4,*label5,*label2;
     MenuItemImage *menuItemImage,*menuItemImage1,*menuItemImage2,*menuItemImage3;
     int a,b,count,c ;
+    float per;
     Sprite *sprite,*sprite2;
     RotateBy *rotateBy;
     MoveTo *moveTo,*moveTo1;
     Vec2 posinitial;
+    ProgressTimer *progressTimer;
 public:
     static cocos2d::Scene* createScene();
 

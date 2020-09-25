@@ -18,57 +18,116 @@ bool HelloWorld::init()
         return false;
     }
 
-    auto visibleSize = Director::getInstance()->getVisibleSize();
+    Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-    sprite = Sprite::create("Scale_9_Sprite.png");
-    sprite->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.6));
-    this->addChild(sprite,1);
-
-    MenuItemImage *menuItemImage =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*0.2));
-    menuItemImage->setTag(1);
-
-    Label *label = Label::createWithTTF("U","fonts/arial.ttf",30);
-    label->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*.2));
-    label->setColor(Color3B(0,0,0));
-    this->addChild(label,2);
-
-    MenuItemImage *menuItemImage1 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage1->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.2));
-    menuItemImage1->setTag(2);
-
-    Label *label1 = Label::createWithTTF("D","fonts/arial.ttf",30);
-    label1->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.2));
-    label1->setColor(Color3B(0,0,0));
-    this->addChild(label1,2);
-
-    MenuItemImage *menuItemImage2 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage2->setPosition(Vec2(visibleSize.width*.8,visibleSize.height*0.2));
-    menuItemImage2->setScale(3,1);
-    menuItemImage2->setTag(3);
-
-    Label *label2 = Label::createWithTTF("End rotate","fonts/arial.ttf",30);
-    label2->setPosition(Vec2(visibleSize.width*.8,visibleSize.height*.2));
-    label2->setColor(Color3B(0,0,0));
-    this->addChild(label2,3);
-
-    Menu *menu = Menu::create(menuItemImage,menuItemImage1,menuItemImage2, nullptr);
-    menu->setPosition(Vec2(0,0));
-    this->addChild(menu);
 
     CallFunc *callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::callFunction1,this));
 
-        rotateBy = RotateBy::create(.2,45);
 
+    sprite = Sprite::create("dot.png");
+    sprite->setPosition(Vec2(visibleSize.width*.6,visibleSize.height*0));
+    this->addChild(sprite,1);
 
-        RepeatForever *repeatForever = RepeatForever::create(rotateBy);
-        sprite->runAction(rotateBy);
-        sprite->runAction(repeatForever);
+//    pointArray->addControlPoint(Vec2(visibleSize.width*.5,visibleSize.height*.5));
+//    pointArray->addControlPoint(sprite->getPosition()+Vec2(260,170));
+//    pointArray->addControlPoint(sprite->getPosition()+Vec2(320,0));
+//    pointArray->addControlPoint(sprite->getPosition()+Vec2(380,170));
+//    pointArray->addControlPoint(sprite->getPosition()+Vec2(440,0));
+//    pointArray->addControlPoint(sprite->getPosition()+Vec2(500,170));
+//    pointArray->addControlPoint(sprite->getPosition()+Vec2(560,0));
+//
+//    CardinalSplineTo *cardinalSplineTo = CardinalSplineTo::create(3,pointArray,1);
+//    ScaleTo *scaleTo = ScaleTo::create(3,4);
+//    Spawn *spawn = Spawn::create(cardinalSplineTo,nullptr);
+    Sequence *sequence = Sequence::create(callFunc, nullptr);
+   // sprite->runAction(spawn);
+    sprite->runAction(sequence);
+//    RepeatForever *repeatForever = RepeatForever::create(cardinalSplineTo);
+
+   // sprite->runAction(cardinalSplineTo);
+   //sprite->runAction(repeatForever);
+//
+    menuItemImage =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage->setPosition(Vec2(visibleSize.width*.4,visibleSize.height*0.5));
+    menuItemImage->setTag(1);
+
+    Label *label = Label::createWithTTF("Start","fonts/arial.ttf",20);
+    label->setPosition(Vec2(visibleSize.width*.4,visibleSize.height*.5));
+    label->setColor(Color3B(0,0,0));
+    this->addChild(label,2);
+
+    menuItemImage1 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage1->setPosition(Vec2(visibleSize.width*.8,visibleSize.height*0.5));
+    menuItemImage1->setTag(2);
+
+    Label *label1 = Label::createWithTTF("Stop","fonts/arial.ttf",20);
+    label1->setPosition(Vec2(visibleSize.width*.8,visibleSize.height*.5));
+    label1->setColor(Color3B(0,0,0));
+    this->addChild(label1,4);
+
+    menuItemImage2 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage2->setPosition(Vec2(visibleSize.width*.2,visibleSize.height*0.95));
+    menuItemImage2->setTag(3);
+
+    label2 = Label::createWithTTF("","fonts/arial.ttf",20);
+    label2->setPosition(Vec2(visibleSize.width*.2,visibleSize.height*.95));
+    label2->setColor(Color3B(0,0,0));
+    this->addChild(label2,6);
+
+    menuItemImage3 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage3->setPosition(Vec2(visibleSize.width*1.05,visibleSize.height*0.95));
+    menuItemImage3->setTag(4);
+
+    label3 = Label::createWithTTF("","fonts/arial.ttf",20);
+    label3->setPosition(Vec2(visibleSize.width*1.05,visibleSize.height*.95));
+    label3->setColor(Color3B(0,0,0));
+    this->addChild(label3,8);
+
+    Menu *menu = Menu::create(menuItemImage,menuItemImage1,menuItemImage2,menuItemImage3, nullptr);
+    menu->setPosition(Vec2(0,0));
+    this->addChild(menu);
+
+    a=0,b=0;
+    __String *string = __String::createWithFormat("%d",a);
+    label2->setString(string->getCString());
+    __String *string1= __String::createWithFormat("%d",b);
+    label3->setString(string1->getCString());
+//
+//    MenuItemImage *menuItemImage2 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage2->setPosition(Vec2(visibleSize.width*.8,visibleSize.height*0.2));
+//    menuItemImage2->setScale(3,1);
+//    menuItemImage2->setTag(3);
+//
+//    Label *label2 = Label::createWithTTF("End rotate","fonts/arial.ttf",30);
+//    label2->setPosition(Vec2(visibleSize.width*.8,visibleSize.height*.2));
+//    label2->setColor(Color3B(0,0,0));
+//    this->addChild(label2,3);
+//
+//    Menu *menu = Menu::create(menuItemImage,menuItemImage1,menuItemImage2, nullptr);
+//    menu->setPosition(Vec2(0,0));
+//    this->addChild(menu);
+//
+//    CallFunc *callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::callFunction1,this));
+//
+//        rotateBy = RotateBy::create(.2,45);
+//
+//
+//        RepeatForever *repeatForever = RepeatForever::create(rotateBy);
+//        sprite->runAction(rotateBy);
+//        sprite->runAction(repeatForever);
    //     Sequence *sequence = Sequence::create(moveTo,callFunc, nullptr);
 //        sprite->runAction(sequence);
 
 //int a=5;
+   // MoveTo  *moveTo = MoveTo::create(3,Vec2(visibleSize.width*.70,visibleSize.height*.70));
+
+//    JumpTo *jump = JumpTo::create(3,Vec2(pos.x+400,visibleSize.height*.2),250,3);
+
+//    rotateBy = RotateBy::create(1,45);
+//	EaseCircleActionOut *easeBounceInOut = EaseCircleActionOut::create(rotateBy);
+//
+//
+//    sprite->runAction(easeBounceInOut);
 
 
 
@@ -216,32 +275,85 @@ bool HelloWorld::init()
 
 void  HelloWorld::callFunction1(){
 
-    auto visibleSize = Director::getInstance()->getVisibleSize();
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+
+    posinitial = sprite->getPosition();
+    PointArray *pointArray = PointArray::create(5);
+    pointArray->addControlPoint(posinitial);
+    pointArray->addControlPoint(Vec2(visibleSize.width*1.1,visibleSize.height*.5));
+    pointArray->addControlPoint(Vec2(visibleSize.width*.6,visibleSize.height*1));
+    pointArray->addControlPoint(Vec2(visibleSize.width*0.15,visibleSize.height*.5));
+    pointArray->addControlPoint(Vec2(visibleSize.width*.6,visibleSize.height*0));
+
+    CardinalSplineTo *cardinalSplineTo = CardinalSplineTo::create(10,pointArray,0);
+    RepeatForever *repeatForever = RepeatForever::create(cardinalSplineTo);
+    sprite->runAction(repeatForever);
     //sprite->runAction(moveTo1);
-    log("checking Log");
-    moveTo1 = MoveTo::create(1,Vec2(visibleSize.width*.5,visibleSize.height*.4));
-    sprite->runAction(moveTo1);
+  //  log("checking Log");
+//    moveTo1 = MoveTo::create(1,Vec2(visibleSize.width*.5,visibleSize.height*.4));
+//    sprite->runAction(moveTo1);
+//    ScaleTo *scaleTo = ScaleTo::create(.01,20);
+//    rotateBy = RotateBy::create(.01,45);
+//    RepeatForever *repeatForever = RepeatForever::create();
+//    sprite->runAction(scaleTo);
+//    sprite->runAction(repeatForever);
 }
 
 void HelloWorld::callFunction(Ref *ref) {
-    MenuItemImage *menuItemImage2 = (MenuItemImage*)ref;
-    int tag = menuItemImage2->getTag();
+    MenuItemImage *menuItemImage4 = (MenuItemImage*)ref;
+    int tag = menuItemImage4->getTag();
 
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    moveTo = MoveTo::create(1,Vec2(visibleSize.width*.5,visibleSize.height*.8));
-    moveTo1 = MoveTo::create(1,Vec2(visibleSize.width*.5,visibleSize.height*.4));
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+//    moveTo = MoveTo::create(1,Vec2(visibleSize.width*.5,visibleSize.height*.8));
+//    moveTo1 = MoveTo::create(1,Vec2(visibleSize.width*.5,visibleSize.height*.4));
+
     if(tag==1)
     {
-        sprite->runAction(moveTo);
+        if(count==1)
+        {
+            count=0;
+            a++;
+            __String *string = __String::createWithFormat("%d",a);
+            label2->setString(string->getCString());
+            Vec2 pos = sprite->getPosition();
+            PointArray *parray = PointArray::create(5);
+            parray->addControlPoint(pos);
+            parray->addControlPoint(Vec2(visibleSize.width*1.1,visibleSize.height*.5));
+            parray->addControlPoint(Vec2(visibleSize.width*.6,visibleSize.height*1));
+            parray->addControlPoint(Vec2(visibleSize.width*0.15,visibleSize.height*.5));
+            parray->addControlPoint(Vec2(visibleSize.width*.6,visibleSize.height*0));
+            CardinalSplineTo *cardinalSplineTo2 = CardinalSplineTo::create(10,parray,0);
+//
+
+            CallFunc *callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::callFunction1,this));
+//            CardinalSplineTo *cardinalSplineTo3 = CardinalSplineTo::create(10,pointArray,0);
+//            RepeatForever *repeatForever = RepeatForever::create(cardinalSplineTo3);
+            Sequence *sequence = Sequence::create(cardinalSplineTo2,callFunc, nullptr);
+            sprite->runAction(sequence);
+        }
+
+
+//        sprite->runAction(moveTo);
     }
     else if(tag==2)
     {
-        sprite->runAction(moveTo1);
-    }
-    else if(tag==3)
-    {
+        count=1;
+        b++;
+        __String *string = __String::createWithFormat("%d",b);
+        label3->setString(string->getCString());
         sprite->stopAllActions();
+        Vec2 pos1 = sprite->getPosition();
+        PointArray *parray1 = PointArray::create(2);
+        parray1->addControlPoint(pos1);
+        parray1->addControlPoint(Vec2(pos1.x,visibleSize.height*0));
+        CardinalSplineTo *cardinalSplineTo1 = CardinalSplineTo::create(5,parray1,0);
+        sprite->runAction(cardinalSplineTo1);
+//        sprite->runAction(moveTo1);
     }
+//    else if(tag==3)
+//    {
+//        sprite->stopAllActions();
+//    }
 }
 
 //void HelloWorld::callFunction(Ref *ref) {
@@ -290,8 +402,8 @@ void HelloWorld::callFunction(Ref *ref) {
 //                menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
 //                label2->setString("You need to subtract then go forward");
 //            }
-////            string = __String::createWithFormat("%d",a);
-////            label->setString(string->getCString());
+//            string = __String::createWithFormat("%d",a);
+//            label->setString(string->getCString());
 //
 //        }
 //    }

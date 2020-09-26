@@ -22,150 +22,225 @@ bool HelloWorld::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 
+    std::vector<cocos2d::Sprite *> objects;
+    for (auto object : this->object)
+    {
+        CCLOG("X:%f   Y:%f", object->getPosition().x, object->getPosition().y);
+    }
+//    ScrollView *scrollView = ScrollView::create();
+////    ScrollView *scrollView1 = ScrollView::create();
+//    scrollView->setContentSize(Size(visibleSize.width,visibleSize.height));
+////    scrollView1->setContentSize(Size(visibleSize.width,visibleSize.height));
+////    this->addChild(scrollView1,1);
+//    this->addChild(scrollView,1);
+//    scrollView->setDirection(ScrollView::Direction::VERTICAL);
+////    scrollView1->setDirection(ScrollView::Direction::HORIZONTAL);
+////    scrollView->setScrollBarEnabled(false);
+//    scrollView->setBounceEnabled(true);
+////    scrollView1->setBounceEnabled(true);
+//    Sprite *tempSprite = Sprite::create("HelloWorld.png");
+//    float topMargin = tempSprite->getContentSize().height*20;
+////    float horizontalMargin = tempSprite->getContentSize().width*10;
+//    if(topMargin <= scrollView->getContentSize().height){
+//        topMargin = scrollView->getContentSize().height;
+//    }
+////    if(horizontalMargin <= scrollView1->getContentSize().width)
+////    {
+////        horizontalMargin=scrollView1->getContentSize().width;
+////    }
+//    scrollView->setInnerContainerSize(Size(scrollView->getContentSize().width,topMargin));
+////    scrollView1->setInnerContainerSize(Size(horizontalMargin,scrollView1->getContentSize().height));
+//    for(int i=0;i<20;i++){
+//        Sprite *sprite = Sprite::create("HelloWorld.png");
+//        sprite->setPosition(Vec2(scrollView->getContentSize().width/2,topMargin-sprite->getContentSize().height/2));
+//        scrollView->addChild(sprite);
+//
+//        topMargin = topMargin - sprite->getContentSize().height;
+//    }
+//    for(int i=0;i<10;i++)
+//    {
+//        Sprite *sprite = Sprite::create("HelloWorld.png");
+//        sprite->setPosition(Vec2(horizontalMargin-sprite->getContentSize().width/2,scrollView1->getContentSize().height/2));
+//        scrollView1->addChild(sprite);
+//
+//        horizontalMargin-=sprite->getContentSize().width;
+//    }
 
+
+//    Slider *slider = Slider::create();
+//    slider->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.5));
+//    slider->loadBarTexture("barTop.png"); // what the slider looks like
+//    slider->loadSlidBallTextures("bar.png", "bar_pressed.png", "bar_disabled.png");
+//    slider->loadProgressBarTexture("barTopPressed.png");
+//
+//    slider->addTouchEventListener([&](Ref* sender, Widget::TouchEventType type){
+//        switch (type)
+//        {
+//            case ui::Widget::TouchEventType::BEGAN:
+//                break;
+//            case ui::Widget::TouchEventType::ENDED:
+//                log("slider moved");
+//                break;
+//            default:
+//                break;
+//        }
+//    });
+//
+//    this->addChild(slider);
 //    CallFunc *callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::callFunction1,this));
 //
 //
-//    sprite = Sprite::create("bar.png");
-//    sprite->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.8));
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.4));
+//    sprite->setScaleX(2);
 //    this->addChild(sprite,1);
 
-    sprite = Sprite::create("button1.png");
-    progressTimer=ProgressTimer::create(sprite);
-    progressTimer->setType(ProgressTimer::Type::RADIAL);
-    progressTimer->setPosition(Vec2(visibleSize.width*.6,visibleSize.height*.8));
-//    progressTimer->setBarChangeRate(Vec2(1,0));
-//    progressTimer->setMidpoint(Vec2(0,0));
-//    progressTimer->setPercentage(100);
-    progressTimer->setScale(2);
-
-    this->addChild(progressTimer,1);
-
-//    ProgressTo *progressTo = ProgressTo::create(5,100);
-//    progressTimer->runAction(progressTo);
-
-//    ProgressFromTo *progressFromTo = ProgressFromTo::create(10,0,100);
-//    progressTimer->runAction(progressFromTo);
-
-
-//    ProgressTo *progressTo = ProgressTo::create(3,70);
-//    sprite->runAction(ProgressTo::create(3,70));
+//    sprite = Sprite::create("button1.png");
+//    progressTimer=ProgressTimer::create(sprite);
+//    progressTimer->setType(ProgressTimer::Type::RADIAL);
+//    progressTimer->setPosition(Vec2(visibleSize.width*.6,visibleSize.height*.8));
+////    progressTimer->setBarChangeRate(Vec2(1,0));
+////    progressTimer->setMidpoint(Vec2(0,0));
+////    progressTimer->setPercentage(100);
+//    progressTimer->setScale(2);
 //
-//    pointArray->addControlPoint(Vec2(visibleSize.width*.5,visibleSize.height*.5));
-//    pointArray->addControlPoint(sprite->getPosition()+Vec2(260,170));
-//    pointArray->addControlPoint(sprite->getPosition()+Vec2(320,0));
-//    pointArray->addControlPoint(sprite->getPosition()+Vec2(380,170));
-//    pointArray->addControlPoint(sprite->getPosition()+Vec2(440,0));
-//    pointArray->addControlPoint(sprite->getPosition()+Vec2(500,170));
-//    pointArray->addControlPoint(sprite->getPosition()+Vec2(560,0));
+//    this->addChild(progressTimer,1);
 //
-//    CardinalSplineTo *cardinalSplineTo = CardinalSplineTo::create(3,pointArray,1);
-//    ScaleTo *scaleTo = ScaleTo::create(3,4);
-//    Spawn *spawn = Spawn::create(cardinalSplineTo,nullptr);
-//    Sequence *sequence = Sequence::create(callFunc, nullptr);
-//   // sprite->runAction(spawn);
-//    sprite->runAction(sequence);
-////    RepeatForever *repeatForever = RepeatForever::create(cardinalSplineTo);
+////    ProgressTo *progressTo = ProgressTo::create(5,100);
+////    progressTimer->runAction(progressTo);
 //
-//   // sprite->runAction(cardinalSplineTo);
-//   //sprite->runAction(repeatForever);
+////    ProgressFromTo *progressFromTo = ProgressFromTo::create(10,0,100);
+////    progressTimer->runAction(progressFromTo);
+//
+//
+////    ProgressTo *progressTo = ProgressTo::create(3,70);
+////    sprite->runAction(ProgressTo::create(3,70));
 ////
-    menuItemImage =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*0.5));
-    menuItemImage->setScaleX(1.5);
-    menuItemImage->setTag(1);
-
-    Label *label = Label::createWithTTF("Hour","fonts/arial.ttf",30);
-    label->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*.5));
-    label->setColor(Color3B(0,0,0));
-    this->addChild(label,2);
+////    pointArray->addControlPoint(Vec2(visibleSize.width*.5,visibleSize.height*.5));
+////    pointArray->addControlPoint(sprite->getPosition()+Vec2(260,170));
+////    pointArray->addControlPoint(sprite->getPosition()+Vec2(320,0));
+////    pointArray->addControlPoint(sprite->getPosition()+Vec2(380,170));
+////    pointArray->addControlPoint(sprite->getPosition()+Vec2(440,0));
+////    pointArray->addControlPoint(sprite->getPosition()+Vec2(500,170));
+////    pointArray->addControlPoint(sprite->getPosition()+Vec2(560,0));
+////
+////    CardinalSplineTo *cardinalSplineTo = CardinalSplineTo::create(3,pointArray,1);
+////    ScaleTo *scaleTo = ScaleTo::create(3,4);
+////    Spawn *spawn = Spawn::create(cardinalSplineTo,nullptr);
+////    Sequence *sequence = Sequence::create(callFunc, nullptr);
+////   // sprite->runAction(spawn);
+////    sprite->runAction(sequence);
+//////    RepeatForever *repeatForever = RepeatForever::create(cardinalSplineTo);
+////
+////   // sprite->runAction(cardinalSplineTo);
+////   //sprite->runAction(repeatForever);
+//////
+//    menuItemImage =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.4));
+//    menuItemImage->setScaleX(1.5);
+//    menuItemImage->setTag(1);
 //
-    menuItemImage1 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage1->setPosition(Vec2(visibleSize.width*.65,visibleSize.height*0.5));
-    menuItemImage1->setScaleX(1.5);
-    menuItemImage1->setTag(2);
-
-    Label *label1 = Label::createWithTTF("Min","fonts/arial.ttf",30);
-    label1->setPosition(Vec2(visibleSize.width*.65,visibleSize.height*.5));
-    label1->setColor(Color3B(0,0,0));
-    this->addChild(label1,4);
+//    Label *label = Label::createWithTTF("Hour","fonts/arial.ttf",30);
+//    label->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.4));
+//    label->setColor(Color3B(0,0,0));
+//    this->addChild(label,2);
 //
-    menuItemImage2 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage2->setPosition(Vec2(visibleSize.width*1,visibleSize.height*0.5));
-    menuItemImage2->setScaleX(1.5);
-    menuItemImage2->setTag(3);
+//    slider->setPercent(30);
+//    int p = slider->getPercent();
+//    __String *string = __String::createWithFormat("%d",p);
+//    label->setString(string->getCString());
+//
+//    Menu *menu = Menu::create(menuItemImage, nullptr);
+//    menu->setPosition(Vec2(0,0));
+//    this->addChild(menu);
 
-    Label *label2 = Label::createWithTTF("Sec","fonts/arial.ttf",30);
-    label2->setPosition(Vec2(visibleSize.width*1,visibleSize.height*.5));
-    label2->setColor(Color3B(0,0,0));
-    this->addChild(label2,6);
+////
+//    menuItemImage1 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage1->setPosition(Vec2(visibleSize.width*.65,visibleSize.height*0.5));
+//    menuItemImage1->setScaleX(1.5);
+//    menuItemImage1->setTag(2);
+//
+//    Label *label1 = Label::createWithTTF("Min","fonts/arial.ttf",30);
+//    label1->setPosition(Vec2(visibleSize.width*.65,visibleSize.height*.5));
+//    label1->setColor(Color3B(0,0,0));
+//    this->addChild(label1,4);
+////
+//    menuItemImage2 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage2->setPosition(Vec2(visibleSize.width*1,visibleSize.height*0.5));
+//    menuItemImage2->setScaleX(1.5);
+//    menuItemImage2->setTag(3);
+//
+//    Label *label2 = Label::createWithTTF("Sec","fonts/arial.ttf",30);
+//    label2->setPosition(Vec2(visibleSize.width*1,visibleSize.height*.5));
+//    label2->setColor(Color3B(0,0,0));
+//    this->addChild(label2,6);
+////
+////    menuItemImage3 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+////    menuItemImage3->setPosition(Vec2(visibleSize.width*1.05,visibleSize.height*0.95));
+////    menuItemImage3->setTag(4);
 //
 //    menuItemImage3 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-//    menuItemImage3->setPosition(Vec2(visibleSize.width*1.05,visibleSize.height*0.95));
+//    menuItemImage3->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*0.3));
 //    menuItemImage3->setTag(4);
-
-    menuItemImage3 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage3->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*0.3));
-    menuItemImage3->setTag(4);
+////
+//    label3 = Label::createWithTTF("","fonts/arial.ttf",30);
+//    label3->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*.3));
+//    label3->setColor(Color3B(0,0,0));
+//    this->addChild(label3,8);
 //
-    label3 = Label::createWithTTF("","fonts/arial.ttf",30);
-    label3->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*.3));
-    label3->setColor(Color3B(0,0,0));
-    this->addChild(label3,8);
-
-    MenuItemImage *menuItemImage4 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage4->setPosition(Vec2(visibleSize.width*.65,visibleSize.height*0.3));
-    menuItemImage4->setTag(5);
-
-    label4 = Label::createWithTTF("","fonts/arial.ttf",30);
-    label4->setPosition(Vec2(visibleSize.width*.65,visibleSize.height*.3));
-    label4->setColor(Color3B(0,0,0));
-    this->addChild(label4,8);
-
-    MenuItemImage *menuItemImage5 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage5->setPosition(Vec2(visibleSize.width*1,visibleSize.height*0.3));
-    menuItemImage5->setTag(6);
-
-    label5 = Label::createWithTTF("","fonts/arial.ttf",30);
-    label5->setPosition(Vec2(visibleSize.width*1,visibleSize.height*.3));
-    label5->setColor(Color3B(0,0,0));
-    this->addChild(label5,8);
-
-//    MenuItemImage *menuItemImage6 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-//    menuItemImage6->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.6));
-//    menuItemImage6->setScaleX(3);
-//    menuItemImage6->setTag(7);
+//    MenuItemImage *menuItemImage4 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage4->setPosition(Vec2(visibleSize.width*.65,visibleSize.height*0.3));
+//    menuItemImage4->setTag(5);
 //
-//    label6 = Label::createWithTTF("","fonts/arial.ttf",30);
-//    label6->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.6));
-//    label6->setColor(Color3B(0,0,0));
-//    this->addChild(label6,8);
-
-    MenuItemImage *menuItemImage7 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage7->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*0.15));
-    menuItemImage7->setScaleX(1.5);
-    menuItemImage7->setTag(8);
-
-    Label *label7 = Label::createWithTTF("Start","fonts/arial.ttf",30);
-    label7->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*.15));
-    label7->setColor(Color3B(0,0,0));
-    this->addChild(label7,8);
-
-    MenuItemImage *menuItemImage8 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage8->setPosition(Vec2(visibleSize.width*.7,visibleSize.height*0.15));
-    menuItemImage8->setScaleX(1.5);
-    menuItemImage8->setTag(9);
-
-    Label *label8 = Label::createWithTTF("Stop","fonts/arial.ttf",30);
-    label8->setPosition(Vec2(visibleSize.width*.7,visibleSize.height*.15));
-    label8->setColor(Color3B(0,0,0));
-    this->addChild(label8,8);
-
-    Menu *menu = Menu::create(menuItemImage,menuItemImage1,menuItemImage2,menuItemImage3,menuItemImage4,menuItemImage5,menuItemImage7,menuItemImage8, nullptr);
-    menu->setPosition(Vec2(0,0));
-    this->addChild(menu);
+//    label4 = Label::createWithTTF("","fonts/arial.ttf",30);
+//    label4->setPosition(Vec2(visibleSize.width*.65,visibleSize.height*.3));
+//    label4->setColor(Color3B(0,0,0));
+//    this->addChild(label4,8);
 //
-//    a=0,b=0;
+//    MenuItemImage *menuItemImage5 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage5->setPosition(Vec2(visibleSize.width*1,visibleSize.height*0.3));
+//    menuItemImage5->setTag(6);
+//
+//    label5 = Label::createWithTTF("","fonts/arial.ttf",30);
+//    label5->setPosition(Vec2(visibleSize.width*1,visibleSize.height*.3));
+//    label5->setColor(Color3B(0,0,0));
+//    this->addChild(label5,8);
+//
+////    MenuItemImage *menuItemImage6 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+////    menuItemImage6->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.6));
+////    menuItemImage6->setScaleX(3);
+////    menuItemImage6->setTag(7);
+////
+////    label6 = Label::createWithTTF("","fonts/arial.ttf",30);
+////    label6->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.6));
+////    label6->setColor(Color3B(0,0,0));
+////    this->addChild(label6,8);
+//
+//    MenuItemImage *menuItemImage7 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage7->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*0.15));
+//    menuItemImage7->setScaleX(1.5);
+//    menuItemImage7->setTag(8);
+//
+//    Label *label7 = Label::createWithTTF("Start","fonts/arial.ttf",30);
+//    label7->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*.15));
+//    label7->setColor(Color3B(0,0,0));
+//    this->addChild(label7,8);
+//
+//    MenuItemImage *menuItemImage8 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage8->setPosition(Vec2(visibleSize.width*.7,visibleSize.height*0.15));
+//    menuItemImage8->setScaleX(1.5);
+//    menuItemImage8->setTag(9);
+//
+//    Label *label8 = Label::createWithTTF("Stop","fonts/arial.ttf",30);
+//    label8->setPosition(Vec2(visibleSize.width*.7,visibleSize.height*.15));
+//    label8->setColor(Color3B(0,0,0));
+//    this->addChild(label8,8);
+//
+//    Menu *menu = Menu::create(menuItemImage,menuItemImage1,menuItemImage2,menuItemImage3,menuItemImage4,menuItemImage5,menuItemImage7,menuItemImage8, nullptr);
+//    menu->setPosition(Vec2(0,0));
+//    this->addChild(menu);
+////
+////    a=0,b=0;
 //    __String *string = __String::createWithFormat("%d",a);
 //    label2->setString(string->getCString());
 //    __String *string1= __String::createWithFormat("%d",b);
@@ -356,25 +431,25 @@ bool HelloWorld::init()
 //    UserDefault::getInstance()->setIntegerForKey("m",b);
 //    UserDefault::getInstance()->setIntegerForKey("s",c);
 //    UserDefault::getInstance()->setFloatForKey("p",per);
-    a=UserDefault::getInstance()->getIntegerForKey("h",0);
-    __String *string = __String::createWithFormat("%02d",a);
-    label3->setString(string->getCString());
+//    a=UserDefault::getInstance()->getIntegerForKey("h",0);
+//    __String *string = __String::createWithFormat("%02d",a);
+//    label3->setString(string->getCString());
+//
+//    b=UserDefault::getInstance()->getIntegerForKey("m",0);
+//    string = __String::createWithFormat("%02d",b);
+//    label4->setString(string->getCString());
+//
+//    c=UserDefault::getInstance()->getIntegerForKey("s",0);
+//    string = __String::createWithFormat("%02d",c);
+//    label5->setString(string->getCString());
+////    per=100;
+//    per=UserDefault::getInstance()->getFloatForKey("p",100);
+////    string = __String::createWithFormat("%f",per);
+////    label6->setString(string->getCString());
+//
+//    count=0;
 
-    b=UserDefault::getInstance()->getIntegerForKey("m",0);
-    string = __String::createWithFormat("%02d",b);
-    label4->setString(string->getCString());
-
-    c=UserDefault::getInstance()->getIntegerForKey("s",0);
-    string = __String::createWithFormat("%02d",c);
-    label5->setString(string->getCString());
-//    per=100;
-    per=UserDefault::getInstance()->getFloatForKey("p",100);
-//    string = __String::createWithFormat("%f",per);
-//    label6->setString(string->getCString());
-
-    count=0;
-
-this->schedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall),1);
+//this->schedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall),1);
 //int a=UserDefault::getInstance()->getIntegerForKey("teeye",0);
 //a++;
 //UserDefault::getInstance()->setIntegerForKey("teeye",a);

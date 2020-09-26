@@ -25,6 +25,15 @@
 #ifndef __HELLOWORLD_SCENE_H__
 #define __HELLOWORLD_SCENE_H__
 
+#ifndef __CCVECTOR_H__
+#define __CCVECTOR_H__
+
+#include "base/ccMacros.h"
+#include "base/CCRef.h"
+#include <vector>
+#include <functional>
+#include <algorithm> // for std::find
+
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 USING_NS_CC;

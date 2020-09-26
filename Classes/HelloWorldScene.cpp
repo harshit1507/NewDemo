@@ -131,7 +131,37 @@ bool HelloWorld::init()
     label5->setColor(Color3B(0,0,0));
     this->addChild(label5,8);
 
-    Menu *menu = Menu::create(menuItemImage,menuItemImage1,menuItemImage2,menuItemImage3,menuItemImage4,menuItemImage5, nullptr);
+//    MenuItemImage *menuItemImage6 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage6->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.6));
+//    menuItemImage6->setScaleX(3);
+//    menuItemImage6->setTag(7);
+//
+//    label6 = Label::createWithTTF("","fonts/arial.ttf",30);
+//    label6->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.6));
+//    label6->setColor(Color3B(0,0,0));
+//    this->addChild(label6,8);
+
+    MenuItemImage *menuItemImage7 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage7->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*0.15));
+    menuItemImage7->setScaleX(1.5);
+    menuItemImage7->setTag(8);
+
+    Label *label7 = Label::createWithTTF("Start","fonts/arial.ttf",30);
+    label7->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*.15));
+    label7->setColor(Color3B(0,0,0));
+    this->addChild(label7,8);
+
+    MenuItemImage *menuItemImage8 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage8->setPosition(Vec2(visibleSize.width*.7,visibleSize.height*0.15));
+    menuItemImage8->setScaleX(1.5);
+    menuItemImage8->setTag(9);
+
+    Label *label8 = Label::createWithTTF("Stop","fonts/arial.ttf",30);
+    label8->setPosition(Vec2(visibleSize.width*.7,visibleSize.height*.15));
+    label8->setColor(Color3B(0,0,0));
+    this->addChild(label8,8);
+
+    Menu *menu = Menu::create(menuItemImage,menuItemImage1,menuItemImage2,menuItemImage3,menuItemImage4,menuItemImage5,menuItemImage7,menuItemImage8, nullptr);
     menu->setPosition(Vec2(0,0));
     this->addChild(menu);
 //
@@ -321,9 +351,11 @@ bool HelloWorld::init()
 //    a=0;
 //    b=0;
 //    c=0;
+//    per=100;
 //    UserDefault::getInstance()->setIntegerForKey("h",a);
 //    UserDefault::getInstance()->setIntegerForKey("m",b);
 //    UserDefault::getInstance()->setIntegerForKey("s",c);
+//    UserDefault::getInstance()->setFloatForKey("p",per);
     a=UserDefault::getInstance()->getIntegerForKey("h",0);
     __String *string = __String::createWithFormat("%02d",a);
     label3->setString(string->getCString());
@@ -335,8 +367,12 @@ bool HelloWorld::init()
     c=UserDefault::getInstance()->getIntegerForKey("s",0);
     string = __String::createWithFormat("%02d",c);
     label5->setString(string->getCString());
+//    per=100;
+    per=UserDefault::getInstance()->getFloatForKey("p",100);
+//    string = __String::createWithFormat("%f",per);
+//    label6->setString(string->getCString());
 
-    per=UserDefault::getInstance()->getFloatForKey("p",100.0);
+    count=0;
 
 this->schedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall),1);
 //int a=UserDefault::getInstance()->getIntegerForKey("teeye",0);
@@ -355,10 +391,25 @@ void  HelloWorld::callScheduleCall(float dt){
 
     if(c==59)
     {
+        log("if(c==59)");
         c=0;
+        per=100;
+        log("after setting c and per");
         __String *string = __String::createWithFormat("%02d",c);
         label5->setString(string->getCString());
+        log("after prining c=0");
         UserDefault::getInstance()->setIntegerForKey("s",c);
+        log("after setting value of c in user default");
+
+        progressTimer->setPercentage(per);
+        ProgressTo *progressTo = ProgressTo::create(1,per-(1.0/.6));
+        per = per-(1.0/.6);
+        UserDefault::getInstance()->setFloatForKey("p", per);
+        progressTimer->runAction(progressTo);
+
+//        string = __String::createWithFormat("%f",per);
+//        label6->setString(string->getCString());
+        log("before if(b<59)");
             if(b<59)
             {
                 b++;
@@ -381,26 +432,41 @@ void  HelloWorld::callScheduleCall(float dt){
                 }
                 else if(a==24)
                 {
+                    log("else if(a==24) before scheduler");
                     this->unschedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall));
+                    log("else if(a==24) after scheduler");
                 }
             }
-    }
-    else if(c<59) {
+    }else if(c<59) {
         if(a==24)
         {
+            log("else if(c<59) && if(a==24) before scheduler");
             this->unschedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall));
+            log("else if(c<59) && if(a==24) after scheduler");
         }
         else
         {
+//            if(per=UserDefault::getInstance()->getIntegerForKey("p",100)<100 && c==0)
+//            {
+//                UserDefault::getInstance()->setFloatForKey("p", 100);
+//            }
+//            per=UserDefault::getInstance()->getIntegerForKey("p",100);
             c++;
             __String *string = __String::createWithFormat("%02d", c);
             label5->setString(string->getCString());
             UserDefault::getInstance()->setIntegerForKey("s", c);
+
             progressTimer->setPercentage(per);
-            ProgressFromTo *progressTo = ProgressFromTo::create(1,per,per-(((float)c)/.60));
-            UserDefault::getInstance()->setFloatForKey("p",per-(((float)c)/.60));
+            ProgressTo *progressTo = ProgressTo::create(1,per-(1.0/.6));
+            per = per-(1.0/.6);
+            UserDefault::getInstance()->setFloatForKey("p", per);
             progressTimer->runAction(progressTo);
+
+//            string = __String::createWithFormat("%f",per);
+//            label6->setString(string->getCString());
         }
+    } else{
+        log("else");
     }
 
 //    if((UserDefault::getInstance()->getIntegerForKey("h")==23)
@@ -440,6 +506,28 @@ void  HelloWorld::callFunction1(){
 void HelloWorld::callFunction(Ref *ref) {
     MenuItemImage *menuItemImage4 = (MenuItemImage*)ref;
     int tag = menuItemImage4->getTag();
+
+
+    if(tag==8)
+    {
+        log("after pressing start");
+        if (count == 1) {
+            count = 0;
+            log("before schedule of start");
+            this->schedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall), 1);
+            log("after schedule of start");
+        }
+    }
+    else if(tag==9)
+    {
+        if (count == 0) {
+            count = 1;
+            log("After pressing stop");
+            this->unschedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall));
+
+        }
+    }
+
 
 //    Size visibleSize = Director::getInstance()->getVisibleSize();
 ////    moveTo = MoveTo::create(1,Vec2(visibleSize.width*.5,visibleSize.height*.8));

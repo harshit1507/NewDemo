@@ -1,0 +1,20 @@
+[
+  {
+    "level": "INFO",
+    "message": "Start JSON generation. Platform version: 16 min SDK version: armeabi-v7a",
+    "file": "/home/assertinfotech/software/cocos2d-x-3.17.1/projects/NewDemo/proj.android/app/jni/Android.mk",
+    "tag": "release|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "JSON \u0027/home/assertinfotech/software/cocos2d-x-3.17.1/projects/NewDemo/proj.android/app/.cxx/ndkBuild/release/armeabi-v7a/android_gradle_build.json\u0027 was up-to-date",
+    "file": "/home/assertinfotech/software/cocos2d-x-3.17.1/projects/NewDemo/proj.android/app/jni/Android.mk",
+    "tag": "release|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "JSON generation completed without problems",
+    "file": "/home/assertinfotech/software/cocos2d-x-3.17.1/projects/NewDemo/proj.android/app/jni/Android.mk",
+    "tag": "release|armeabi-v7a"
+  }
+]

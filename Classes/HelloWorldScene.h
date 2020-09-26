@@ -33,7 +33,7 @@ using namespace cocos2d;
 class HelloWorld : public cocos2d::Scene
 {
 private:
-    Label *label3,*label4,*label5,*label2;
+    Label *label3,*label4,*label5,*label2,*label6;
     MenuItemImage *menuItemImage,*menuItemImage1,*menuItemImage2,*menuItemImage3;
     int a,b,count,c ;
     float per;

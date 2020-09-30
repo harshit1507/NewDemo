@@ -25,8 +25,15 @@ bool HelloWorld::init() {
 //        this->addChild(spr);
 //        sprVector.push_back(spr);
 
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    point3 = Vec2(visibleSize.width*0.5,visibleSize.height*0.5);
+//    sprite->setAnchorPoint(Vec2(.5,.5));
+//    sprite->setPosition(point3);
+//    this->addChild(sprite);
+
     sprite = Sprite::create("Scale_9_Sprite.png");
-    point3 = Vec2(visibleSize.width*.2,visibleSize.height*.2);
+    point3 = Vec2(visibleSize.width*0.2,visibleSize.height*0.2);
+//    sprite->setAnchorPoint(Vec2(.5,.5));
     sprite->setPosition(point3);
     this->addChild(sprite);
 
@@ -47,11 +54,13 @@ bool HelloWorld::init() {
     EventListenerTouchOneByOne *listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);
 
-    listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
-    listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
-    listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
 
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+        listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+        listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
+        listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
+
+        _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
 
 //        sprite = Sprite::create("Scale_9_Sprite.png");
 ////        sprite->setPosition(getContentSize()/2);
@@ -557,26 +566,42 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
 {
 //    __String *string1 = __String::createWithFormat("Began");
 
-    label3->setString("Began");
-    Vec2 point1 = touch->getLocation();
+    if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
+    {
+        label3->setString("Began");
+        sprite->setPosition(touch->getLocation());
+    }
 
-    sprite->setPosition(point1);
+//    label3->setString("Began");
+//    Vec2 point1 = touch->getLocation();
+//
+//    sprite->setPosition(point1);
 //    sprite->setPosition(point);
     return true;
 }
 void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event)
 {
 //    __String *string1 = __String::createWithFormat("Moved");
-    label3->setString("moved");
-    Vec2 point2 = touch->getLocation();
-    sprite->setPosition(point2);
+//    label3->setString("moved");
+    if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
+    {
+        label3->setString("Moved");
+        sprite->setPosition(touch->getLocation());
+    }
+//    Vec2 point2 = touch->getLocation();
+//    sprite->setPosition(point2);
 }
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
 {
 //    __String *string1 = __String::createWithFormat("Ended");
-    label3->setString("Ended");
-    point3 = touch->getLocation();
-    sprite->setPosition(point3);
+    if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
+    {
+        label3->setString("Ended");
+        sprite->setPosition(touch->getLocation());
+    }
+//    label3->setString("Ended");
+//    point3 = touch->getLocation();
+//    sprite->setPosition(point3);
 }
 void  HelloWorld::callScheduleCall(float dt){
 

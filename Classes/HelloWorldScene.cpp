@@ -32,24 +32,29 @@ bool HelloWorld::init() {
 //    this->addChild(sprite);
 
     sprite = Sprite::create("Scale_9_Sprite.png");
-    point3 = Vec2(visibleSize.width*0.2,visibleSize.height*0.2);
-//    sprite->setAnchorPoint(Vec2(.5,.5));
+    point3 = Vec2(visibleSize.width*0.5,visibleSize.height*0.5);
+    sprite->setAnchorPoint(Vec2(.5,.5));
     sprite->setPosition(point3);
+    sprite->setScale(4);
     this->addChild(sprite);
 
-    menuItemImage =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-    menuItemImage->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.4));
-    menuItemImage->setScaleX(1.5);
-    menuItemImage->setTag(1);
+    rotateBy = RotateBy::create(.25,45);
+    RepeatForever *repeatForever = RepeatForever::create(rotateBy);
+    sprite->runAction(repeatForever);
 
-    Menu *menu = Menu::create(menuItemImage, nullptr);
-    menu->setPosition(Vec2(0,0));
-    this->addChild(menu);
-
-    label3 = Label::createWithTTF("","fonts/arial.ttf",30);
-    label3->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.4));
-    label3->setColor(Color3B(0,0,0));
-    this->addChild(label3,2);
+//    menuItemImage =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.4));
+//    menuItemImage->setScaleX(1.5);
+//    menuItemImage->setTag(1);
+//
+//    Menu *menu = Menu::create(menuItemImage, nullptr);
+//    menu->setPosition(Vec2(0,0));
+//    this->addChild(menu);
+//
+//    label3 = Label::createWithTTF("","fonts/arial.ttf",30);
+//    label3->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.4));
+//    label3->setColor(Color3B(0,0,0));
+//    this->addChild(label3,2);
 
     EventListenerTouchOneByOne *listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);
@@ -568,8 +573,22 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
 
     if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
     {
-        label3->setString("Began");
-        sprite->setPosition(touch->getLocation());
+//        label3->setString("Began");
+//        sprite->setPosition(touch->getLocation());
+        float x2=touch->getLocation().x;
+        float y2=touch->getLocation().y;
+        float x1=sprite->getAnchorPoint().x;
+        float y1=sprite->getAnchorPoint().y;
+        float x3=sprite->getPosition().x;
+        float y3=sprite->getPosition().y;
+        float x5 = x2*.5/x3;
+        float y5 = y2*.5/y3;
+        log("x1 = %f\ty1 = %f\nx2 = %f\ty2 = %f\nx3 = %f\ty3 = %f",x1,y1,x2,y2,x3,y3);
+        sprite->setAnchorPoint(Vec2(x5,y5));
+        log("x5 = %f\ty5 = %f",x5,y5);
+//        rotateBy = RotateBy::create(.25,45);
+//        RepeatForever *repeatForever = RepeatForever::create(rotateBy);
+//        sprite->runAction(repeatForever);
     }
 
 //    label3->setString("Began");
@@ -585,8 +604,22 @@ void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event)
 //    label3->setString("moved");
     if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
     {
-        label3->setString("Moved");
-        sprite->setPosition(touch->getLocation());
+//        label3->setString("Moved");
+//        sprite->setPosition(touch->getLocation());
+        float x2=touch->getLocation().x;
+        float y2=touch->getLocation().y;
+        float x1=sprite->getAnchorPoint().x;
+        float y1=sprite->getAnchorPoint().y;
+        float x3=sprite->getPosition().x;
+        float y3=sprite->getPosition().y;
+        float x5 = x2*.5/x3;
+        float y5 = y2*.5/y3;
+        log("x1 = %f\ty1 = %f\nx2 = %f\ty2 = %f\nx3 = %f\ty3 = %f",x1,y1,x2,y2,x3,y3);
+        sprite->setAnchorPoint(Vec2(x5,y5));
+        log("x5 = %f\ty5 = %f",x5,y5);
+//        rotateBy = RotateBy::create(.25,45);
+//        RepeatForever *repeatForever = RepeatForever::create(rotateBy);
+//        sprite->runAction(repeatForever);
     }
 //    Vec2 point2 = touch->getLocation();
 //    sprite->setPosition(point2);
@@ -596,8 +629,23 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
 //    __String *string1 = __String::createWithFormat("Ended");
     if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
     {
-        label3->setString("Ended");
-        sprite->setPosition(touch->getLocation());
+//        label3->setString("Ended");
+//        sprite->setPosition(touch->getLocation());
+        float x2=touch->getLocation().x;
+        float y2=touch->getLocation().y;
+        float x1=sprite->getAnchorPoint().x;
+        float y1=sprite->getAnchorPoint().y;
+        Vec2 pos=sprite->convertToWorldSpace(sprite->getPosition());
+        float x3=pos.x;
+        float y3=pos.y;
+        float x5 = x2*.5/x3;
+        float y5 = y2*.5/y3;
+        log("x1 = %f\ty1 = %f\nx2 = %f\ty2 = %f\nx3 = %f\ty3 = %f",x1,y1,x2,y2,x3,y3);
+        sprite->setAnchorPoint(Vec2(x5,y5));
+        log("x5 = %f\ty5 = %f",x5,y5);
+//        rotateBy = RotateBy::create(.25,45);
+//        RepeatForever *repeatForever = RepeatForever::create(rotateBy);
+//        sprite->runAction(repeatForever);
     }
 //    label3->setString("Ended");
 //    point3 = touch->getLocation();

@@ -47,6 +47,7 @@ private:
     ProgressTimer *progressTimer;
     vector<Sprite*> sprVector;
     std::vector<MenuItemImage*> menuVector;
+    std::map<int,MenuItemImage*> map1;
 public:
     static cocos2d::Scene* createScene();
 

@@ -27,6 +27,19 @@ bool HelloWorld::init()
 //        this->addChild(spr);
 //        sprVector.push_back(spr);
 
+        sprite = Sprite::create("Scale_9_Sprite.png");
+//        sprite->setPosition(getContentSize()/2);
+        sprite->setScale(2);
+//        this->addChild(sprite);
+
+        clipper = ClippingNode::create(sprite);
+        clipper->setContentSize(sprite->getBoundingBox().size);
+        clipper->setPosition(this->getContentSize()/2);
+        this->addChild(clipper);
+
+        sprite2 = Sprite::create("HelloWorld.png");
+        sprite2->setPosition(Vec2(0,0));
+        clipper->addChild(sprite2);
 
 //        int i=0;
 //        for(int j=0;j<5;j++)
@@ -46,26 +59,26 @@ bool HelloWorld::init()
 //                log("Pushing into Vector %d",i-1);
 //            }
 //        }
-
-    int i=0;
-        for(int j=0;j<5;j++)
-        {
-            for(int k=0;k<2;k++)
-            {
-                MenuItemImage *menuItemImage5 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-                menuItemImage5->setPosition(Vec2(visibleSize.width*(.2+j*.2),visibleSize.height*(.2+k*.2)));
-                menuItemImage5->setTag(i);
-
-                Menu *menu = Menu::create(menuItemImage5, nullptr);
-                menu->setPosition(Vec2(0,0));
-                this->addChild(menu);
+//
+//    int i=0;
+//        for(int j=0;j<5;j++)
+//        {
+//            for(int k=0;k<2;k++)
+//            {
+//                MenuItemImage *menuItemImage5 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//                menuItemImage5->setPosition(Vec2(visibleSize.width*(.2+j*.2),visibleSize.height*(.2+k*.2)));
+//                menuItemImage5->setTag(i);
+//
+//                Menu *menu = Menu::create(menuItemImage5, nullptr);
 //                menu->setPosition(Vec2(0,0));
-//                this->addChild(menuItemImage);
-                map1.insert(pair<int,MenuItemImage*>(i,menuItemImage5));
-                log("Mapping %d",i);
-                i++;
-            }
-        }
+//                this->addChild(menu);
+////                menu->setPosition(Vec2(0,0));
+////                this->addChild(menuItemImage);
+//                map1.insert(pair<int,MenuItemImage*>(i,menuItemImage5));
+//                log("Mapping %d",i);
+//                i++;
+//            }
+//        }
 
 //        menuItemImage = MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
 //        menuItemImage->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.5));

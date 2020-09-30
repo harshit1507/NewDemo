@@ -48,6 +48,7 @@ private:
     vector<Sprite*> sprVector;
     std::vector<MenuItemImage*> menuVector;
     std::map<int,MenuItemImage*> map1;
+    ClippingNode *clipper;
 public:
     static cocos2d::Scene* createScene();
 

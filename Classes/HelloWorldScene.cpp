@@ -22,34 +22,72 @@ bool HelloWorld::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 
-    std::vector<cocos2d::Sprite *> objects;
-    for (auto object : this->object)
-    {
-        CCLOG("X:%f   Y:%f", object->getPosition().x, object->getPosition().y);
-    }
+
+//        Sprite *spr = Sprite::create("fdf.png");
+//        this->addChild(spr);
+//        sprVector.push_back(spr);
+
+
+        int i=0;
+        for(int j=0;j<5;j++)
+        {
+            for(int k=0;k<2;k++)
+            {
+                MenuItemImage *menuItemImage5 =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+                menuItemImage5->setPosition(Vec2(visibleSize.width*(.2+j*.2),visibleSize.height*(.2+k*.2)));
+                menuItemImage5->setTag(i);
+                i++;
+                Menu *menu = Menu::create(menuItemImage5, nullptr);
+                menu->setPosition(Vec2(0,0));
+                this->addChild(menu);
+//                menu->setPosition(Vec2(0,0));
+//                this->addChild(menuItemImage);
+                menuVector.push_back(menuItemImage5);
+                log("Pushing into Vector %d",i-1);
+            }
+        }
+
+
+//        menuItemImage = MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//        menuItemImage->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.5));
+//        menuItemImage->setTag(0);
+//        this->addChild(menuItemImage);
+//        menuVector.push_back(menuItemImage);
+//        log("Pushing into Vector");
+//        menuItemImage->setPosition(Vec2(visibleSize.width*(.1+i*.1),visibleSize.height*0.4));
+//        menuItemImage->setTag(i);
+
+//        Menu *menu = Menu::create(menuItemImage, nullptr);
+//        menu->setPosition(Vec2(0,0));
+//        this->addChild(menu);
+//        menuVector.push_back(menuItemImage);
+
+//    Sprite *spfdhj = sprVector.at(0);
+
+
 //    ScrollView *scrollView = ScrollView::create();
-////    ScrollView *scrollView1 = ScrollView::create();
+  ////  ScrollView *scrollView1 = ScrollView::create();
 //    scrollView->setContentSize(Size(visibleSize.width,visibleSize.height));
-////    scrollView1->setContentSize(Size(visibleSize.width,visibleSize.height));
+////   scrollView1->setContentSize(Size(visibleSize.width,visibleSize.height));
 ////    this->addChild(scrollView1,1);
 //    this->addChild(scrollView,1);
 //    scrollView->setDirection(ScrollView::Direction::VERTICAL);
 ////    scrollView1->setDirection(ScrollView::Direction::HORIZONTAL);
-////    scrollView->setScrollBarEnabled(false);
+//    scrollView->setScrollBarEnabled(false);
 //    scrollView->setBounceEnabled(true);
 ////    scrollView1->setBounceEnabled(true);
-//    Sprite *tempSprite = Sprite::create("HelloWorld.png");
+////    Sprite *tempSprite = Sprite::create("Scale_9_Sprite.png");
 //    float topMargin = tempSprite->getContentSize().height*20;
 ////    float horizontalMargin = tempSprite->getContentSize().width*10;
 //    if(topMargin <= scrollView->getContentSize().height){
 //        topMargin = scrollView->getContentSize().height;
 //    }
-////    if(horizontalMargin <= scrollView1->getContentSize().width)
-////    {
-////        horizontalMargin=scrollView1->getContentSize().width;
-////    }
+//    if(horizontalMargin <= scrollView1->getContentSize().width)
+//    {
+//        horizontalMargin=scrollView1->getContentSize().width;
+//    }
 //    scrollView->setInnerContainerSize(Size(scrollView->getContentSize().width,topMargin));
-////    scrollView1->setInnerContainerSize(Size(horizontalMargin,scrollView1->getContentSize().height));
+   //// scrollView1->setInnerContainerSize(Size(horizontalMargin,scrollView1->getContentSize().height));
 //    for(int i=0;i<20;i++){
 //        Sprite *sprite = Sprite::create("HelloWorld.png");
 //        sprite->setPosition(Vec2(scrollView->getContentSize().width/2,topMargin-sprite->getContentSize().height/2));
@@ -62,7 +100,7 @@ bool HelloWorld::init()
 //        Sprite *sprite = Sprite::create("HelloWorld.png");
 //        sprite->setPosition(Vec2(horizontalMargin-sprite->getContentSize().width/2,scrollView1->getContentSize().height/2));
 //        scrollView1->addChild(sprite);
-//
+
 //        horizontalMargin-=sprite->getContentSize().width;
 //    }
 
@@ -556,6 +594,7 @@ void  HelloWorld::callFunction1(){
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
+
 //    posinitial = sprite->getPosition();
 //    PointArray *pointArray = PointArray::create(5);
 //    pointArray->addControlPoint(posinitial);
@@ -577,31 +616,54 @@ void  HelloWorld::callFunction1(){
 //    sprite->runAction(scaleTo);
 //    sprite->runAction(repeatForever);
 }
-
+int j=0;
 void HelloWorld::callFunction(Ref *ref) {
+
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+
     MenuItemImage *menuItemImage4 = (MenuItemImage*)ref;
     int tag = menuItemImage4->getTag();
 
 
-    if(tag==8)
-    {
-        log("after pressing start");
-        if (count == 1) {
-            count = 0;
-            log("before schedule of start");
-            this->schedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall), 1);
-            log("after schedule of start");
-        }
-    }
-    else if(tag==9)
-    {
-        if (count == 0) {
-            count = 1;
-            log("After pressing stop");
-            this->unschedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall));
 
+    menuItemImage4->setNormalImage(Sprite::create("button1.png"));
+    menuItemImage4->setSelectedImage(Sprite::create("button1.png"));
+    log("Accessing Vector %d", tag);
+
+
+    for(int i=0;i<10;i++)
+    {
+        if(tag!=i)
+        {
+            menuVector.at(i)->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+            menuVector.at(i)->setSelectedImage(Sprite::create("Scale_9_Sprite.png"));
         }
     }
+
+
+
+
+//
+//    menuItemImage4->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+//    if(tag==8)
+//    {
+//        log("after pressing start");
+//        if (count == 1) {
+//            count = 0;
+//            log("before schedule of start");
+//            this->schedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall), 1);
+//            log("after schedule of start");
+//        }
+//    }
+//    else if(tag==9)
+//    {
+//        if (count == 0) {
+//            count = 1;
+//            log("After pressing stop");
+//            this->unschedule(CC_SCHEDULE_SELECTOR(HelloWorld::callScheduleCall));
+//
+//        }
+//    }
 
 
 //    Size visibleSize = Director::getInstance()->getVisibleSize();

@@ -9,12 +9,10 @@ Scene* HelloWorld::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
-{
+bool HelloWorld::init() {
     //////////////////////////////
     // 1. super init first
-    if ( !Scene::init() )
-    {
+    if (!Scene::init()) {
         return false;
     }
 
@@ -27,19 +25,47 @@ bool HelloWorld::init()
 //        this->addChild(spr);
 //        sprVector.push_back(spr);
 
-        sprite = Sprite::create("Scale_9_Sprite.png");
-//        sprite->setPosition(getContentSize()/2);
-        sprite->setScale(2);
-//        this->addChild(sprite);
+    sprite = Sprite::create("Scale_9_Sprite.png");
+    point3 = Vec2(visibleSize.width*.2,visibleSize.height*.2);
+    sprite->setPosition(point3);
+    this->addChild(sprite);
 
-        clipper = ClippingNode::create(sprite);
-        clipper->setContentSize(sprite->getBoundingBox().size);
-        clipper->setPosition(this->getContentSize()/2);
-        this->addChild(clipper);
+    menuItemImage =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+    menuItemImage->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.4));
+    menuItemImage->setScaleX(1.5);
+    menuItemImage->setTag(1);
 
-        sprite2 = Sprite::create("HelloWorld.png");
-        sprite2->setPosition(Vec2(0,0));
-        clipper->addChild(sprite2);
+    Menu *menu = Menu::create(menuItemImage, nullptr);
+    menu->setPosition(Vec2(0,0));
+    this->addChild(menu);
+
+    label3 = Label::createWithTTF("","fonts/arial.ttf",30);
+    label3->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.4));
+    label3->setColor(Color3B(0,0,0));
+    this->addChild(label3,2);
+
+    EventListenerTouchOneByOne *listener = EventListenerTouchOneByOne::create();
+    listener->setSwallowTouches(true);
+
+    listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+    listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
+    listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
+
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+//        sprite = Sprite::create("Scale_9_Sprite.png");
+////        sprite->setPosition(getContentSize()/2);
+//        sprite->setScale(2);
+////        this->addChild(sprite);
+//
+//        clipper = ClippingNode::create(sprite);
+//        clipper->setContentSize(sprite->getBoundingBox().size);
+//        clipper->setPosition(this->getContentSize()/2);
+//        this->addChild(clipper);
+//
+//        sprite2 = Sprite::create("HelloWorld.png");
+//        sprite2->setPosition(Vec2(0,0));
+//        clipper->addChild(sprite2);
 
 //        int i=0;
 //        for(int j=0;j<5;j++)
@@ -526,6 +552,31 @@ bool HelloWorld::init()
 
 
     return true;
+}
+bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
+{
+//    __String *string1 = __String::createWithFormat("Began");
+
+    label3->setString("Began");
+    Vec2 point1 = touch->getLocation();
+
+    sprite->setPosition(point1);
+//    sprite->setPosition(point);
+    return true;
+}
+void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event)
+{
+//    __String *string1 = __String::createWithFormat("Moved");
+    label3->setString("moved");
+    Vec2 point2 = touch->getLocation();
+    sprite->setPosition(point2);
+}
+void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
+{
+//    __String *string1 = __String::createWithFormat("Ended");
+    label3->setString("Ended");
+    point3 = touch->getLocation();
+    sprite->setPosition(point3);
 }
 void  HelloWorld::callScheduleCall(float dt){
 

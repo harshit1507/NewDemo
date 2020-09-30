@@ -43,12 +43,13 @@ private:
     Sprite *sprite,*sprite2;
     RotateBy *rotateBy;
     MoveTo *moveTo,*moveTo1;
-    Vec2 posinitial;
+    Vec2 posinitial,point3;
     ProgressTimer *progressTimer;
     vector<Sprite*> sprVector;
     std::vector<MenuItemImage*> menuVector;
     std::map<int,MenuItemImage*> map1;
     ClippingNode *clipper;
+
 public:
     static cocos2d::Scene* createScene();
 
@@ -60,6 +61,9 @@ public:
     void callFunction(Ref *ref);
     void callFunction1();
     void callScheduleCall(float dt);
+    bool onTouchBegan(Touch *touch, Event *unused_event);
+    void onTouchEnded(Touch *touch, Event *unused_event);
+    void onTouchMoved(Touch *Touch, Event *unused_event);
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 };

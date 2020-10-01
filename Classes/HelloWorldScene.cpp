@@ -31,16 +31,16 @@ bool HelloWorld::init() {
 //    sprite->setPosition(point3);
 //    this->addChild(sprite);
 
-    sprite = Sprite::create("Scale_9_Sprite.png");
+    sprite = Sprite::create("unnamed.jpg");
     point3 = Vec2(visibleSize.width*0.5,visibleSize.height*0.5);
     sprite->setAnchorPoint(Vec2(.5,.5));
     sprite->setPosition(point3);
-    sprite->setScale(4);
+    sprite->setScale(1);
     this->addChild(sprite);
 
-    rotateBy = RotateBy::create(.25,45);
-    RepeatForever *repeatForever = RepeatForever::create(rotateBy);
-    sprite->runAction(repeatForever);
+//    rotateBy = RotateBy::create(.25,360);
+////    RepeatForever *repeatForever = RepeatForever::create(rotateBy);
+//    sprite->runAction(rotateBy);
 
 //    menuItemImage =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
 //    menuItemImage->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.4));
@@ -565,92 +565,228 @@ bool HelloWorld::init() {
 //UserDefault::getInstance()->setIntegerForKey("teeye",a);
 
 
+
+
+// partical animation *************************/
+
+LayerColor *layer = LayerColor::create(Color4B::WHITE);
+this->addChild(layer);
+
+
+
+
     return true;
 }
-bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
-{
+static CCSize winsize = CCDirector::sharedDirector()->getWinSize();
+bool HelloWorld::onTouchBegan(Touch *touch, Event *event) {
+
+
+
+
+//    ParticleExplosion *fire = ParticleExplosion::createWithTotalParticles(100);
+////fire->addParticles(100);
+////fire->setSpeed(0.5f);
+//    fire->setEndColor(Color4F::RED);
+//    fire->setStartColor(Color4F::YELLOW);
+//    fire->setLife(5.0);
+//    fire->setGravity(Vec2(0,1));
+//
+//
+//    fire->setPosition(touch->getLocation());
+//    this->addChild(fire);
+
+
+//    ParticleRain *fire = ParticleRain::createWithTotalParticles(100);
+////fire->addParticles(100);
+////fire->setSpeed(0.5f);
+//    fire->setEndColor(Color4F::RED);
+//    fire->setStartColor(Color4F::YELLOW);
+//    fire->setLife(5.0);
+//    fire->setGravity(Vec2(0,1));
+//
+//
+//    fire->setPosition(touch->getLocation());
+//    this->addChild(fire);
+
+
+    ParticleFireworks *fire = ParticleFireworks::createWithTotalParticles(100);
+//fire->addParticles(100);
+//fire->setSpeed(0.5f);
+    fire->setEndColor(Color4F::RED);
+    fire->setStartColor(Color4F::YELLOW);
+    fire->setLife(5.0);
+    fire->setGravity(Vec2(0,1));
+
+
+    fire->setPosition(touch->getLocation());
+    this->addChild(fire);
+
+
+
+    if (sprite->getBoundingBox().containsPoint(touch->getLocation()))
+    {
+
+        //Rect of sprite
+        Rect rect = sprite->getBoundingBox();
+        Vec2 p1 = Vec2(rect.getMinX(),rect.getMinY());
+        log("x : %f\ty : %f",p1.x,p1.y);
+        //Width of sprite
+        float width = sprite->getContentSize().width;
+        log("Width of Sprite : %f", width);
+
+        //Height of sprite
+        float height = sprite->getContentSize().height;
+        log("Height of Sprite : %f", height);
+
+        //Touch Location
+        Vec2 TouchLocation = touch->getLocation();
+        log("Touch Location : %f\t%f", TouchLocation.x, TouchLocation.y);
+
+
+        //Anchor x
+        float x1 = (TouchLocation.x - p1.x) / width;
+        log("Anchor x : %f", x1);
+
+        //Anchor y
+        float y1 = (TouchLocation.y - p1.y) / height;
+        log("Anchor y : %f", y1);
+
+        //Setting Anchors
+        sprite->setAnchorPoint(Vec2(x1, y1));
+
+        //Setting Position
+        sprite->setPosition(TouchLocation);
+
+        rotateBy = RotateBy::create(1,360);
+        sprite->runAction(rotateBy);
+
+
+
+
+
+
+    }
+
+
 //    __String *string1 = __String::createWithFormat("Began");
 
-    if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
-    {
+//    if (sprite->getBoundingBox().containsPoint(touch->getLocation())) {
 //        label3->setString("Began");
 //        sprite->setPosition(touch->getLocation());
-        float x2=touch->getLocation().x;
-        float y2=touch->getLocation().y;
-        float x1=sprite->getAnchorPoint().x;
-        float y1=sprite->getAnchorPoint().y;
-        float x3=sprite->getPosition().x;
-        float y3=sprite->getPosition().y;
-        float x5 = x2*.5/x3;
-        float y5 = y2*.5/y3;
-        log("x1 = %f\ty1 = %f\nx2 = %f\ty2 = %f\nx3 = %f\ty3 = %f",x1,y1,x2,y2,x3,y3);
-        sprite->setAnchorPoint(Vec2(x5,y5));
-        log("x5 = %f\ty5 = %f",x5,y5);
+//        Rect imgRect = sprite->getBoundingBox();
+//        Vec2 pos = Vec2(imgRect.getMinX(),imgRect.getMinY());
+//    Size visibleSize = Director::getInstance()->getVisibleSize();
+//        Vec2 pos = sprite->getPosition();
+//        float x = visibleSize.width;
+//        float y = visibleSize.height;
+//        float x2=touch->getLocation().x;
+//        float y2=touch->getLocation().y;
+//        float x1=abs(x2-x);
+//        float y1=abs(y2-y);
+//        float x3=sprite->getPosition().x;
+//        float y3=sprite->getPosition().y;
+////        float x5 = x2*.5/x3;
+////        float y5 = y2*.5/y3;
+//        log("pos.x = %f\tpos.y = %f\nx = %f\ty = %f\nx1 = %f\ty1 = %f\nx2 = %f\ty2 = %f",pos.x,pos.y,x,y,x1,y1,x2,y2);
+//        sprite->setAnchorPoint(Vec2((x1/x)*.5,(y1/y)*.5));
+//        log("x5 = %f\ty5 = %f",(x1/x)*.5,(y1/y)*.5);
+//        log("\nVec2.x = %f\tVec2.y = %f",Vec2(x1/x,y1/y).x,Vec2(x1/x,y1/y).y);
+//        sprite->setPosition(pos.x,pos.y);
+
+//
+//        sprite->setPosition(touch->getLocation());
+//        float x = (1/winsize.width)*touch->getLocation().x;
+////        float y = (1/winsize.height)*touch->getLocation().y;
+//        float x2 = touch->getLocation().x;
+//        float y2 = touch->getLocation().y;
+//        float x1 = sprite->getAnchorPoint().x;
+//        float y1 = sprite->getAnchorPoint().y;
+//        float x3 = sprite->getPosition().x;
+//        float y3 = sprite->getPosition().y;
+//        float x5 = x2 * .5 / x3;
+//        float y5 = y2 * .5 / y3;
+//        log("x1 = %f\ty1 = %f\nx2 = %f\ty2 = %f\nx3 = %f\ty3 = %f", x1, y1, x2, y2, x3, y3);
+//        sprite->setAnchorPoint(Vec2(x5, y5));
+//        log("x5 = %f\ty5 = %f", x5, y5);
+//        sprite->setPosition(touch->getLocation());
+
 //        rotateBy = RotateBy::create(.25,45);
-//        RepeatForever *repeatForever = RepeatForever::create(rotateBy);
-//        sprite->runAction(repeatForever);
-    }
+////        RepeatForever *repeatForever = RepeatForever::create(rotateBy);
+//        sprite->runAction(rotateBy);
+//        sprite->setPosition(touch->getLocation());
+//    }
 
 //    label3->setString("Began");
 //    Vec2 point1 = touch->getLocation();
 //
 //    sprite->setPosition(point1);
 //    sprite->setPosition(point);
-    return true;
+        return true;
+//    }
 }
 void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event)
-{
+    {
 //    __String *string1 = __String::createWithFormat("Moved");
 //    label3->setString("moved");
     if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
     {
+
+
 //        label3->setString("Moved");
 //        sprite->setPosition(touch->getLocation());
-        float x2=touch->getLocation().x;
-        float y2=touch->getLocation().y;
-        float x1=sprite->getAnchorPoint().x;
-        float y1=sprite->getAnchorPoint().y;
-        float x3=sprite->getPosition().x;
-        float y3=sprite->getPosition().y;
-        float x5 = x2*.5/x3;
-        float y5 = y2*.5/y3;
-        log("x1 = %f\ty1 = %f\nx2 = %f\ty2 = %f\nx3 = %f\ty3 = %f",x1,y1,x2,y2,x3,y3);
-        sprite->setAnchorPoint(Vec2(x5,y5));
-        log("x5 = %f\ty5 = %f",x5,y5);
+//        float x = (1/winsize.width)*touch->getLocation().x;
+//        float y = (1/winsize.height)*touch->getLocation().y;
+//        float x2=touch->getLocation().x;
+//        float y2=touch->getLocation().y;
+//        float x1=sprite->getAnchorPoint().x;
+//        float y1=sprite->getAnchorPoint().y;
+//        float x3=sprite->getPosition().x;
+//        float y3=sprite->getPosition().y;
+//        float x5 = x2*.5/x3;
+//        float y5 = y2*.5/y3;
+//        log("x1 = %f\ty1 = %f\nx2 = %f\ty2 = %f\nx3 = %f\ty3 = %f",x1,y1,x2,y2,x3,y3);
+//        sprite->setAnchorPoint(Vec2(x5,y5));
+//        log("x5 = %f\ty5 = %f",x5,y5);
 //        rotateBy = RotateBy::create(.25,45);
 //        RepeatForever *repeatForever = RepeatForever::create(rotateBy);
 //        sprite->runAction(repeatForever);
     }
 //    Vec2 point2 = touch->getLocation();
 //    sprite->setPosition(point2);
-}
+};
+
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
 {
+
 //    __String *string1 = __String::createWithFormat("Ended");
-    if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
-    {
+//    if(sprite->getBoundingBox().containsPoint(touch->getLocation()))
+//    {
 //        label3->setString("Ended");
-//        sprite->setPosition(touch->getLocation());
-        float x2=touch->getLocation().x;
-        float y2=touch->getLocation().y;
-        float x1=sprite->getAnchorPoint().x;
-        float y1=sprite->getAnchorPoint().y;
-        Vec2 pos=sprite->convertToWorldSpace(sprite->getPosition());
-        float x3=pos.x;
-        float y3=pos.y;
-        float x5 = x2*.5/x3;
-        float y5 = y2*.5/y3;
-        log("x1 = %f\ty1 = %f\nx2 = %f\ty2 = %f\nx3 = %f\ty3 = %f",x1,y1,x2,y2,x3,y3);
-        sprite->setAnchorPoint(Vec2(x5,y5));
-        log("x5 = %f\ty5 = %f",x5,y5);
+////        sprite->setPosition(touch->getLocation());
+//        float x = (1/winsize.width)*touch->getLocation().x;
+//        float y = (1/winsize.height)*touch->getLocation().y;
+//        float x2=touch->getLocation().x;
+//        float y2=touch->getLocation().y;
+//        float x1=sprite->getAnchorPoint().x;
+//        float y1=sprite->getAnchorPoint().y;
+//        Vec2 pos=sprite->convertToWorldSpace(sprite->getPosition());
+//        float x3=pos.x;
+//        float y3=pos.y;
+//        float x5 = x2*.5/x3;
+//        float y5 = y2*.5/y3;
+//        log("x1 = %f\ty1 = %f\nx2 = %f\ty2 = %f\nx3 = %f\ty3 = %f",x1,y1,x2,y2,x3,y3);
+//        sprite->setAnchorPoint(Vec2(x,y));
+//        log("x5 = %f\ty5 = %f",x5,y5);
 //        rotateBy = RotateBy::create(.25,45);
 //        RepeatForever *repeatForever = RepeatForever::create(rotateBy);
 //        sprite->runAction(repeatForever);
-    }
+
+
+//    }
 //    label3->setString("Ended");
 //    point3 = touch->getLocation();
 //    sprite->setPosition(point3);
-}
+};
 void  HelloWorld::callScheduleCall(float dt){
 
     log("hbfjsdffhfgfgfdg");

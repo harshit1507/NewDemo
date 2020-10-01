@@ -29,6 +29,7 @@
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
+#include "cstdlib"
 USING_NS_CC;
 using namespace ui;
 using namespace cocos2d;

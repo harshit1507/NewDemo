@@ -25,18 +25,21 @@ bool HelloWorld::init() {
 //        this->addChild(spr);
 //        sprVector.push_back(spr);
 
-//    sprite = Sprite::create("Scale_9_Sprite.png");
+    LayerColor *layer = LayerColor::create(Color4B::BLACK);
+    this->addChild(layer);
+
+//    sprite = Sprite::create("anar.png");
+//    point3 = Vec2(visibleSize.width*0.55,visibleSize.height*0.2);
+////    sprite->setAnchorPoint(Vec2(.5,.5));
+//    sprite->setPosition(point3);
+//    layer->addChild(sprite);
+
+//    sprite = Sprite::create("unnamed.jpg");
 //    point3 = Vec2(visibleSize.width*0.5,visibleSize.height*0.5);
 //    sprite->setAnchorPoint(Vec2(.5,.5));
 //    sprite->setPosition(point3);
+//    sprite->setScale(1);
 //    this->addChild(sprite);
-
-    sprite = Sprite::create("unnamed.jpg");
-    point3 = Vec2(visibleSize.width*0.5,visibleSize.height*0.5);
-    sprite->setAnchorPoint(Vec2(.5,.5));
-    sprite->setPosition(point3);
-    sprite->setScale(1);
-    this->addChild(sprite);
 
 //    rotateBy = RotateBy::create(.25,360);
 ////    RepeatForever *repeatForever = RepeatForever::create(rotateBy);
@@ -569,8 +572,7 @@ bool HelloWorld::init() {
 
 // partical animation *************************/
 
-LayerColor *layer = LayerColor::create(Color4B::WHITE);
-this->addChild(layer);
+
 
 
 
@@ -580,12 +582,13 @@ this->addChild(layer);
 static CCSize winsize = CCDirector::sharedDirector()->getWinSize();
 bool HelloWorld::onTouchBegan(Touch *touch, Event *event) {
 
+    Size visibleSize = Director::getInstance()->getVisibleSize();
 
 
 
 //    ParticleExplosion *fire = ParticleExplosion::createWithTotalParticles(100);
 ////fire->addParticles(100);
-////fire->setSpeed(0.5f);
+//    fire->setSpeed(0.5f);
 //    fire->setEndColor(Color4F::RED);
 //    fire->setStartColor(Color4F::YELLOW);
 //    fire->setLife(5.0);
@@ -609,63 +612,114 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *event) {
 //    this->addChild(fire);
 
 
-    ParticleFireworks *fire = ParticleFireworks::createWithTotalParticles(100);
+//    ParticleFireworks *fire = ParticleFireworks::createWithTotalParticles(100);
+////fire->addParticles(100);
+////fire->setSpeed(0.5f);
+//    fire->setEndColor(Color4F::RED);
+//    fire->setStartColor(Color4F::YELLOW);
+//    fire->setLife(5.0);
+//    fire->setGravity(Vec2(0,1));
+//
+//
+//    fire->setPosition(touch->getLocation());
+//    this->addChild(fire);
+
+//    ParticleFireworks *fire = ParticleFireworks::createWithTotalParticles(100);
+////fire->addParticles(100);
+////fire->setSpeed(0.5f);
+//    fire->setEndColor(Color4F::RED);
+//    fire->setStartColor(Color4F::YELLOW);
+//    fire->setLife(5.0);
+//    fire->setGravity(Vec2(0,1));
+////    fire->setRotatePerSecond(10);
+//    fire->setPosition(touch->getLocation());
+//    this->addChild(fire);
+
+//
+//    ParticleFireworks *fire = ParticleFireworks::createWithTotalParticles(200);
+////fire->addParticles(100);
+//    fire->setSpeed(400);
+////    fire->setSpeedVar(120);
+//    fire->setEndColor(Color4F::YELLOW);
+//    fire->setStartColor(Color4F::RED);
+//    fire->setLife(7);
+//    fire->setGravity(Vec2(0,-200));
+////    fire->setEndRadius(2);
+//    fire->setStartSize(12);
+////    fire->setEmissionRate(500);
+//
+//    fire->setPosition(Vec2(visibleSize.width*.55,visibleSize.height*.35));
+//    this->addChild(fire);
+
+//    ParticleRain *fire = ParticleRain::createWithTotalParticles(100);
+////fire->addParticles(100);
+////fire->setSpeed(0.5f);
+////    fire->setEndColor(Color4F::RED);
+//    fire->setStartColor(Color4F::YELLOW);
+////    fire->setLife(5.0);
+////    fire->setGravity(Vec2(0,1));
+////    fire->setRotatePerSecond(10);
+//    fire->setPosition(Vec2(visibleSize.width*.55,visibleSize.height*.75));
+//    this->addChild(fire);
+
+    ParticleFlower *fire = ParticleFlower::createWithTotalParticles(100);
 //fire->addParticles(100);
 //fire->setSpeed(0.5f);
     fire->setEndColor(Color4F::RED);
     fire->setStartColor(Color4F::YELLOW);
-    fire->setLife(5.0);
-    fire->setGravity(Vec2(0,1));
-
-
-    fire->setPosition(touch->getLocation());
+//    fire->setLife(5.0);
+//    fire->setGravity(Vec2(0,1));
+//    fire->setRotatePerSecond(10);
+//fire->setEmissionRate(200);
+    fire->setPosition(Vec2(visibleSize.width*.55,visibleSize.height*.75));
     this->addChild(fire);
 
 
+//    fire->setVisible(false);
 
-    if (sprite->getBoundingBox().containsPoint(touch->getLocation()))
-    {
-
-        //Rect of sprite
-        Rect rect = sprite->getBoundingBox();
-        Vec2 p1 = Vec2(rect.getMinX(),rect.getMinY());
-        log("x : %f\ty : %f",p1.x,p1.y);
-        //Width of sprite
-        float width = sprite->getContentSize().width;
-        log("Width of Sprite : %f", width);
-
-        //Height of sprite
-        float height = sprite->getContentSize().height;
-        log("Height of Sprite : %f", height);
-
-        //Touch Location
-        Vec2 TouchLocation = touch->getLocation();
-        log("Touch Location : %f\t%f", TouchLocation.x, TouchLocation.y);
-
-
-        //Anchor x
-        float x1 = (TouchLocation.x - p1.x) / width;
-        log("Anchor x : %f", x1);
-
-        //Anchor y
-        float y1 = (TouchLocation.y - p1.y) / height;
-        log("Anchor y : %f", y1);
-
-        //Setting Anchors
-        sprite->setAnchorPoint(Vec2(x1, y1));
-
-        //Setting Position
-        sprite->setPosition(TouchLocation);
-
-        rotateBy = RotateBy::create(1,360);
-        sprite->runAction(rotateBy);
-
-
-
-
-
-
-    }
+//    if (sprite->getBoundingBox().containsPoint(touch->getLocation()))
+//    {
+//
+//        //Rect of sprite
+//        Rect rect = sprite->getBoundingBox();
+//        Vec2 p1 = Vec2(rect.getMinX(),rect.getMinY());
+//        log("x : %f\ty : %f",p1.x,p1.y);
+//        //Width of sprite
+//        float width = sprite->getContentSize().width;
+//        log("Width of Sprite : %f", width);
+//
+//        //Height of sprite
+//        float height = sprite->getContentSize().height;
+//        log("Height of Sprite : %f", height);
+//
+//        //Touch Location
+//        Vec2 TouchLocation = touch->getLocation();
+//        log("Touch Location : %f\t%f", TouchLocation.x, TouchLocation.y);
+//
+//
+//        //Anchor x
+//        float x1 = (TouchLocation.x - p1.x) / width;
+//        log("Anchor x : %f", x1);
+//
+//        //Anchor y
+//        float y1 = (TouchLocation.y - p1.y) / height;
+//        log("Anchor y : %f", y1);
+//
+//        //Setting Anchors
+//        sprite->setAnchorPoint(Vec2(x1, y1));
+//
+//        //Setting Position
+//        sprite->setPosition(TouchLocation);
+//
+//        rotateBy = RotateBy::create(1,360);
+//        sprite->runAction(rotateBy);
+//
+//
+//
+//
+//
+//
+//    }
 
 
 //    __String *string1 = __String::createWithFormat("Began");

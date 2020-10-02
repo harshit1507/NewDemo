@@ -1,6 +1,7 @@
 
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "WelcomeScene.h"
 
 
 Scene* HelloWorld::createScene()
@@ -16,6 +17,9 @@ bool HelloWorld::init() {
         return false;
     }
 
+
+//    Director::getInstance()->replaceScene(TransitionFade::create(2,HelloWorld::createScene()));
+
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -27,6 +31,19 @@ bool HelloWorld::init() {
 
     LayerColor *layer = LayerColor::create(Color4B::BLACK);
     this->addChild(layer);
+
+
+    ParticleGalaxy *fire = ParticleGalaxy::createWithTotalParticles(100);
+//fire->addParticles(100);
+//fire->setSpeed(0.5f);
+    fire->setEndColor(Color4F::RED);
+    fire->setStartColor(Color4F::YELLOW);
+    fire->setLife(25.0);
+//    fire->setGravity(Vec2(0,1));
+//    fire->setRotatePerSecond(10);
+//fire->setEmissionRate(200);
+    fire->setPosition(Vec2(visibleSize.width*.55,visibleSize.height*.25));
+    layer->addChild(fire);
 
 //    sprite = Sprite::create("anar.png");
 //    point3 = Vec2(visibleSize.width*0.55,visibleSize.height*0.2);
@@ -249,12 +266,16 @@ bool HelloWorld::init() {
 ////   //sprite->runAction(repeatForever);
 //////
 //    menuItemImage =MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-//    menuItemImage->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.4));
-//    menuItemImage->setScaleX(1.5);
+//    menuItemImage->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.7));
+//    menuItemImage->setScaleX(3);
 //    menuItemImage->setTag(1);
 //
-//    Label *label = Label::createWithTTF("Hour","fonts/arial.ttf",30);
-//    label->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.4));
+//    Menu *menu = Menu::create(menuItemImage, nullptr);
+//    menu->setPosition(Vec2(0,0));
+//    this->addChild(menu);
+//
+//    Label *label = Label::createWithTTF("Welcome Scene","fonts/arial.ttf",30);
+//    label->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.7));
 //    label->setColor(Color3B(0,0,0));
 //    this->addChild(label,2);
 //
@@ -579,12 +600,14 @@ bool HelloWorld::init() {
 
     return true;
 }
-static CCSize winsize = CCDirector::sharedDirector()->getWinSize();
+//static CCSize winsize = CCDirector::sharedDirector()->getWinSize();
 bool HelloWorld::onTouchBegan(Touch *touch, Event *event) {
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
 
+    Director::getInstance()->replaceScene(TransitionZoomFlipAngular::create(2,WelcomeScene::create()));
+    
 
 //    ParticleExplosion *fire = ParticleExplosion::createWithTotalParticles(100);
 ////fire->addParticles(100);
@@ -661,18 +684,18 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *event) {
 ////    fire->setRotatePerSecond(10);
 //    fire->setPosition(Vec2(visibleSize.width*.55,visibleSize.height*.75));
 //    this->addChild(fire);
-
-    ParticleFlower *fire = ParticleFlower::createWithTotalParticles(100);
-//fire->addParticles(100);
-//fire->setSpeed(0.5f);
-    fire->setEndColor(Color4F::RED);
-    fire->setStartColor(Color4F::YELLOW);
-//    fire->setLife(5.0);
-//    fire->setGravity(Vec2(0,1));
-//    fire->setRotatePerSecond(10);
-//fire->setEmissionRate(200);
-    fire->setPosition(Vec2(visibleSize.width*.55,visibleSize.height*.75));
-    this->addChild(fire);
+//
+//    ParticleFlower *fire = ParticleFlower::createWithTotalParticles(10);
+////fire->addParticles(100);
+////fire->setSpeed(0.5f);
+//    fire->setEndColor(Color4F::RED);
+//    fire->setStartColor(Color4F::YELLOW);
+////    fire->setLife(5.0);
+////    fire->setGravity(Vec2(0,1));
+////    fire->setRotatePerSecond(10);
+////fire->setEmissionRate(200);
+//    fire->setPosition(Vec2(visibleSize.width*.55,visibleSize.height*.75));
+//    this->addChild(fire);
 
 
 //    fire->setVisible(false);
@@ -972,19 +995,20 @@ void HelloWorld::callFunction(Ref *ref) {
 
 
 
-    menuItemImage4->setNormalImage(Sprite::create("button1.png"));
-    menuItemImage4->setSelectedImage(Sprite::create("button1.png"));
-    log("callFunction1 %d", tag);
 
-
-    map<int,MenuItemImage*>::iterator itr;
-    for(itr = map1.begin(); itr!=map1.end();itr++)
-    {
-        if(itr->first!=tag) {
-            itr->second->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
-            itr->second->setSelectedImage(Sprite::create("Scale_9_Sprite.png"));
-        }
-    }
+//    menuItemImage4->setNormalImage(Sprite::create("button1.png"));
+//    menuItemImage4->setSelectedImage(Sprite::create("button1.png"));
+//    log("callFunction1 %d", tag);
+//
+//
+//    map<int,MenuItemImage*>::iterator itr;
+//    for(itr = map1.begin(); itr!=map1.end();itr++)
+//    {
+//        if(itr->first!=tag) {
+//            itr->second->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+//            itr->second->setSelectedImage(Sprite::create("Scale_9_Sprite.png"));
+//        }
+//    }
 
 
 //    for(int i=0;i<10;i++)

@@ -48,7 +48,7 @@ private:
     ProgressTimer *progressTimer;
     vector<Sprite*> sprVector;
     vector<int> intVector;
-    std::vector<MenuItemImage*> menuVector;
+    std::vector<MenuItemImage*> menuVector,menuVector1;
     std::map<int,MenuItemImage*> map1;
     ClippingNode *clipper;
 

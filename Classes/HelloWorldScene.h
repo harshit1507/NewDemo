@@ -47,6 +47,7 @@ private:
     Vec2 posinitial,point3;
     ProgressTimer *progressTimer;
     vector<Sprite*> sprVector;
+    vector<int> intVector;
     std::vector<MenuItemImage*> menuVector;
     std::map<int,MenuItemImage*> map1;
     ClippingNode *clipper;

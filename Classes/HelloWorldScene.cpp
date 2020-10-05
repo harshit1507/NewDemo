@@ -29,21 +29,21 @@ bool HelloWorld::init() {
 //        this->addChild(spr);
 //        sprVector.push_back(spr);
 
-    LayerColor *layer = LayerColor::create(Color4B::BLACK);
-    this->addChild(layer);
+//    LayerColor *layer = LayerColor::create(Color4B::BLACK);
+//    this->addChild(layer);
 
-
-    ParticleGalaxy *fire = ParticleGalaxy::createWithTotalParticles(100);
-//fire->addParticles(100);
-//fire->setSpeed(0.5f);
-    fire->setEndColor(Color4F::RED);
-    fire->setStartColor(Color4F::YELLOW);
-    fire->setLife(25.0);
-//    fire->setGravity(Vec2(0,1));
-//    fire->setRotatePerSecond(10);
-//fire->setEmissionRate(200);
-    fire->setPosition(Vec2(visibleSize.width*.55,visibleSize.height*.25));
-    layer->addChild(fire);
+//
+//    ParticleGalaxy *fire = ParticleGalaxy::createWithTotalParticles(100);
+////fire->addParticles(100);
+////fire->setSpeed(0.5f);
+//    fire->setEndColor(Color4F::RED);
+//    fire->setStartColor(Color4F::YELLOW);
+//    fire->setLife(25.0);
+////    fire->setGravity(Vec2(0,1));
+////    fire->setRotatePerSecond(10);
+////fire->setEmissionRate(200);
+//    fire->setPosition(Vec2(visibleSize.width*.55,visibleSize.height*.25));
+//    layer->addChild(fire);
 
 //    sprite = Sprite::create("anar.png");
 //    point3 = Vec2(visibleSize.width*0.55,visibleSize.height*0.2);
@@ -76,15 +76,15 @@ bool HelloWorld::init() {
 //    label3->setColor(Color3B(0,0,0));
 //    this->addChild(label3,2);
 
-    EventListenerTouchOneByOne *listener = EventListenerTouchOneByOne::create();
-    listener->setSwallowTouches(true);
-
-
-        listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
-        listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
-        listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
-
-        _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+//    EventListenerTouchOneByOne *listener = EventListenerTouchOneByOne::create();
+//    listener->setSwallowTouches(true);
+//
+//
+//        listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+//        listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
+//        listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
+//
+//        _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 
 //        sprite = Sprite::create("Scale_9_Sprite.png");
@@ -591,7 +591,124 @@ bool HelloWorld::init() {
 
 
 
-// partical animation *************************/
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.3,visibleSize.height*0.2));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.5,visibleSize.height*0.2));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.7,visibleSize.height*0.2));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.9,visibleSize.height*0.2));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.3,visibleSize.height*0.4));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.5,visibleSize.height*0.4));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.7,visibleSize.height*0.4));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.9,visibleSize.height*0.4));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.3,visibleSize.height*0.6));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.5,visibleSize.height*0.6));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.7,visibleSize.height*0.6));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.9,visibleSize.height*0.6));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.3,visibleSize.height*0.8));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.5,visibleSize.height*0.8));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.7,visibleSize.height*0.8));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+//
+//    sprite = Sprite::create("Scale_9_Sprite.png");
+//    sprite->setColor(Color3B::WHITE);
+//    sprite->setPosition(Vec2(visibleSize.width*0.9,visibleSize.height*0.8));
+//    sprite->setTag(1);
+//    this->addChild(sprite);
+
+int k=0;
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        {
+            menuItemImage = MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+            menuItemImage->setColor(Color3B::WHITE);
+            menuItemImage->setPosition(Vec2(visibleSize.width*(.3+i*.2),visibleSize.height*(.2+j*.2)));
+            menuItemImage->setTag(rand()%4);
+//            intVector.push_back(rand()%4);
+//            menuVector.push_back(menuItemImage);
+
+            Menu *menu = Menu::create(menuItemImage, nullptr);
+            menu->setPosition(Vec2(0,0));
+            this->addChild(menu);
+
+
+
+            log("Tag of MenuItemImage at %f , %f is %d",.3+i*.2,.2+j*.2,rand()%4);
+        }
+    }
+
 
 
 
@@ -606,8 +723,10 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *event) {
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
 
-    Director::getInstance()->replaceScene(TransitionZoomFlipAngular::create(2,WelcomeScene::create()));
-    
+
+
+//    Director::getInstance()->replaceScene(TransitionZoomFlipAngular::create(2,WelcomeScene::create()));
+
 
 //    ParticleExplosion *fire = ParticleExplosion::createWithTotalParticles(100);
 ////fire->addParticles(100);
@@ -986,12 +1105,118 @@ void  HelloWorld::callFunction1(){
 //    sprite->runAction(repeatForever);
 }
 int j=0;
+int i=0;
+int k=0;
 void HelloWorld::callFunction(Ref *ref) {
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     MenuItemImage *menuItemImage4 = (MenuItemImage*)ref;
     int tag = menuItemImage4->getTag();
+
+    if(tag==0)
+    {
+        menuItemImage4->setColor(Color3B::RED);
+//        intVector.push_back(tag);
+        log("Before Pushing in vector");
+        menuVector.push_back(menuItemImage4);
+        log("After Pushing in vector");
+        k=1;
+    }
+    else if(tag==1)
+    {
+        menuItemImage4->setColor(Color3B::GREEN);
+//        intVector.push_back(tag);
+        log("Before Pushing in vector");
+        menuVector.push_back(menuItemImage4);
+        log("After Pushing in vector");
+        k=1;
+    }
+    else if(tag==2)
+    {
+        menuItemImage4->setColor(Color3B::YELLOW);
+//        intVector.push_back(tag);
+        log("Before Pushing in vector");
+        menuVector.push_back(menuItemImage4);
+        log("After Pushing in vector");
+        k=1;
+    }
+    else if(tag==3)
+    {
+        menuItemImage4->setColor(Color3B::MAGENTA);
+//        intVector.push_back(tag);
+        log("Before Pushing in vector");
+        menuVector.push_back(menuItemImage4);
+        log("After Pushing in vector");
+        k=1;
+    }
+    while(i<2)
+    {
+        if(i>0 && menuVector.at(k-1)->getColor()!=menuVector.at(k)->getColor())
+        {
+            menuVector.at(k-1)->setColor(Color3B::WHITE);
+            menuVector.at(k)->setColor(Color3B::WHITE);
+            log("Before Popping Vector");
+            menuVector.pop_back();
+            menuVector.pop_back();
+            log("After Popping Vector");
+            k=0;
+            i=0;
+            break;
+        }
+        else if(i>0 && menuVector.at(k-1)->getColor()==menuVector.at(k)->getColor())
+        {
+            log("Before Popping Vector");
+            menuVector.pop_back();
+            menuVector.pop_back();
+            log("After Popping Vector");
+            k=0;
+            i=0;
+            break;
+        }
+        if(i==0)
+        {
+            i=1;
+            break;
+        }
+        log("Iterating Loop");
+    }
+
+
+//    for(int i=0;i<16;i++)
+//    {
+//
+//        if(i>0 && menuVector.at(i-1)->getColor()!=menuVector.at(i)->getColor())
+//        {
+//            menuVector.at(i-1)->setColor(Color3B::BLUE);
+//            menuVector.at(i)->setColor(Color3B::BLUE);
+//            log("In the if block");
+//        } else{
+//            log("In the else block");
+//        }
+//        log("Outside if block");
+//
+//        if(menuVector.at(i-1)->getColor()==menuVector.at(i)->getColor())
+//        {
+//            log("Same Color");
+//        }
+////        if(tag!=i)
+////        {
+////            menuVector.at(i)->setColor(Color3B::BLUE);
+//////            menuVector.at(i)->setSelectedImage(Sprite::create("Scale_9_Sprite.png"));
+////        }
+//    }
+
+//    map<int,MenuItemImage*>::iterator itr;
+//    for(itr = map1.begin(); itr!=map1.end();itr++)
+//    {
+//        if(itr->first!=tag) {
+////            itr->second->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+////            itr->second->setSelectedImage(Sprite::create("Scale_9_Sprite.png"));
+//            itr->second->setColor(Color3B::BLUE);
+//        }
+//    }
+
 
 
 

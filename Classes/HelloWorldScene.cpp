@@ -733,6 +733,8 @@ bool HelloWorld::init() {
 //    pageView->setGravity(ListView::Gravity::CENTER_HORIZONTAL);
     pageView->setContentSize(pageViewSize);
     pageView->setBounceEnabled(true);
+    pageView->setClippingEnabled(true);
+//    pageView->setPosition((widgetSize - pageView->getContentSize()) / 2.0f);
     pageView->setItemsMargin(35);
 //    Size backgroundSize = background->getContentSize();
     pageView->setPosition(Vec2(visibleSize.width*.08,visibleSize.height*.08));
@@ -740,7 +742,7 @@ bool HelloWorld::init() {
     pageView->setGlobalZOrder(200);
     this->addChild(pageView);
 
-    for(int i=1;i<5;i++)
+    for(int i=1;i<5;++i)
     {
         Layout *layout = Layout::create();
         layout->setContentSize(pageSize);

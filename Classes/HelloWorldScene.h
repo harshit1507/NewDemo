@@ -33,6 +33,7 @@
 USING_NS_CC;
 using namespace ui;
 using namespace cocos2d;
+using namespace cocos2d::ui;
 using namespace std;
 class HelloWorld : public cocos2d::Scene
 {

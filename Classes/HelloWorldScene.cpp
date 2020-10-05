@@ -687,44 +687,76 @@ bool HelloWorld::init() {
 //    sprite->setTag(1);
 //    this->addChild(sprite);
 
-int k=0;
-    for(int i=0;i<4;i++)
+//int k=0;
+//    for(int i=0;i<4;i++)
+//    {
+//        for(int j=0;j<4;j++)
+//        {
+//            menuItemImage = MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//            menuItemImage->setColor(Color3B::WHITE);
+//            menuItemImage->setPosition(Vec2(visibleSize.width*(.3+i*.2),visibleSize.height*(.2+j*.2)));
+//            if(j>=i)
+//            {
+//                menuItemImage->setTag(j-i);
+//                log("Tag of MenuItemImage at %f , %f is %d",.3+i*.2,.2+j*.2,j-i);
+//            }
+//            else if(i>j)
+//            {
+//                menuItemImage->setTag(i-j);
+//                log("Tag of MenuItemImage at %f , %f is %d",.3+i*.2,.2+j*.2,i-j);
+//            }
+//
+////            intVector.push_back(rand()%4);
+//            menuVector1.push_back(menuItemImage);
+//
+//            Menu *menu = Menu::create(menuItemImage, nullptr);
+//            menu->setPosition(Vec2(0,0));
+//            this->addChild(menu);
+//
+//            label4 = Label::createWithTTF("","fonts/arial.ttf",30);
+//            label4->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.5));
+//            label4->setColor(Color3B::WHITE);
+//            this->addChild(label4,2);
+//
+//
+//
+//
+//        }
+//    }
+
+
+    Size pageViewSize(Vec2(visibleSize.width*4,visibleSize.height*.9));
+    Size pageSize(Vec2(visibleSize.width,visibleSize.height));
+    PageView *pageView = PageView::create();
+    pageView->setDirection(PageView::Direction::HORIZONTAL);
+//    pageView->setMagneticType(ListView::MagneticType::CENTER);
+//    pageView->setGravity(ListView::Gravity::CENTER_HORIZONTAL);
+    pageView->setContentSize(pageViewSize);
+    pageView->setBounceEnabled(true);
+    pageView->setItemsMargin(35);
+//    Size backgroundSize = background->getContentSize();
+    pageView->setPosition(Vec2(visibleSize.width*.08,visibleSize.height*.08));
+    pageView->removeAllItems();
+    pageView->setGlobalZOrder(200);
+    this->addChild(pageView);
+
+    for(int i=1;i<5;i++)
     {
-        for(int j=0;j<4;j++)
-        {
-            menuItemImage = MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
-            menuItemImage->setColor(Color3B::WHITE);
-            menuItemImage->setPosition(Vec2(visibleSize.width*(.3+i*.2),visibleSize.height*(.2+j*.2)));
-            if(j>=i)
-            {
-                menuItemImage->setTag(j-i);
-                log("Tag of MenuItemImage at %f , %f is %d",.3+i*.2,.2+j*.2,j-i);
-            }
-            else if(i>j)
-            {
-                menuItemImage->setTag(i-j);
-                log("Tag of MenuItemImage at %f , %f is %d",.3+i*.2,.2+j*.2,i-j);
-            }
+        Layout *layout = Layout::create();
+        layout->setContentSize(pageSize);
+        ImageView *imageView = ImageView::create("mole 04.jpg");
+        imageView->setScale9Enabled(false);
+        imageView->setContentSize(pageSize);
+        imageView->setPosition(Vec2(layout->getContentSize().width*.5,layout->getContentSize().height*.5));
+        layout->addChild(imageView);
 
-//            intVector.push_back(rand()%4);
-            menuVector1.push_back(menuItemImage);
-
-            Menu *menu = Menu::create(menuItemImage, nullptr);
-            menu->setPosition(Vec2(0,0));
-            this->addChild(menu);
-
-            label4 = Label::createWithTTF("","fonts/arial.ttf",30);
-            label4->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0.5));
-            label4->setColor(Color3B::WHITE);
-            this->addChild(label4,2);
-
-
-
-
-        }
+        Text *label = Text::create(StringUtils::format("Page %d",i),"fonts/arial.ttf",30);
+        label->setColor(Color3B(192,192,192));
+        label->setPosition(Vec2(layout->getContentSize().width*.5,layout->getContentSize().height*.8));
+        layout->addChild(label);
+        pageView->addChild(layout);
     }
-
-
+//    pageView->scrollToItem(3);
 
 
 
@@ -1130,115 +1162,115 @@ void HelloWorld::callFunction(Ref *ref) {
     MenuItemImage *menuItemImage4 = (MenuItemImage*)ref;
     int tag = menuItemImage4->getTag();
 
-    if(tag==0)
-    {
-        menuItemImage4->setColor(Color3B::RED);
-//        intVector.push_back(tag);
-        menuItemImage4->setEnabled(false);
-        log("Before Pushing in vector: tag 0");
-        menuVector.push_back(menuItemImage4);
-        log("After Pushing in vector: tag 0");
-
-        k=1;
-        j++;
-
-    }
-    else if(tag==1)
-    {
-        menuItemImage4->setColor(Color3B::GREEN);
-        menuItemImage4->setEnabled(false);
-//        intVector.push_back(tag);
-        log("Before Pushing in vector: tag 1");
-        menuVector.push_back(menuItemImage4);
-        log("After Pushing in vector: tag 1");
-        k=1;
-        j++;
-    }
-    else if(tag==2)
-    {
-        menuItemImage4->setColor(Color3B::YELLOW);
-        menuItemImage4->setEnabled(false);
-//        intVector.push_back(tag);
-        log("Before Pushing in vector: tag 2");
-        menuVector.push_back(menuItemImage4);
-        log("After Pushing in vector: tag 2");
-        k=1;
-        j++;
-    }
-    else if(tag==3)
-    {
-        menuItemImage4->setColor(Color3B::MAGENTA);
-        menuItemImage4->setEnabled(false);
-//        intVector.push_back(tag);
-        log("Before Pushing in vector: tag 3");
-        menuVector.push_back(menuItemImage4);
-        log("After Pushing in vector: tag 3");
-        k=1;
-        j++;
-    }
+//    if(tag==0)
+//    {
+//        menuItemImage4->setColor(Color3B::RED);
+////        intVector.push_back(tag);
+//        menuItemImage4->setEnabled(false);
+//        log("Before Pushing in vector: tag 0");
+//        menuVector.push_back(menuItemImage4);
+//        log("After Pushing in vector: tag 0");
 //
-    while(i<2)
-    {
-//        if(k==1)
+//        k=1;
+//        j++;
+//
+//    }
+//    else if(tag==1)
+//    {
+//        menuItemImage4->setColor(Color3B::GREEN);
+//        menuItemImage4->setEnabled(false);
+////        intVector.push_back(tag);
+//        log("Before Pushing in vector: tag 1");
+//        menuVector.push_back(menuItemImage4);
+//        log("After Pushing in vector: tag 1");
+//        k=1;
+//        j++;
+//    }
+//    else if(tag==2)
+//    {
+//        menuItemImage4->setColor(Color3B::YELLOW);
+//        menuItemImage4->setEnabled(false);
+////        intVector.push_back(tag);
+//        log("Before Pushing in vector: tag 2");
+//        menuVector.push_back(menuItemImage4);
+//        log("After Pushing in vector: tag 2");
+//        k=1;
+//        j++;
+//    }
+//    else if(tag==3)
+//    {
+//        menuItemImage4->setColor(Color3B::MAGENTA);
+//        menuItemImage4->setEnabled(false);
+////        intVector.push_back(tag);
+//        log("Before Pushing in vector: tag 3");
+//        menuVector.push_back(menuItemImage4);
+//        log("After Pushing in vector: tag 3");
+//        k=1;
+//        j++;
+//    }
+////
+//    while(i<2)
+//    {
+////        if(k==1)
+////        {
+////            menuVector.at(k-1)->setEnabled(false);
+////            menuVector.at(k)->setEnabled(false);
+////        }
+//        if(i>0 && menuVector.at(k-1)->getColor()!=menuVector.at(k)->getColor())
 //        {
+//            menuVector.at(k-1)->setEnabled(true);
+//            menuVector.at(k)->setEnabled(true);
+//            menuVector.at(k-1)->setColor(Color3B::WHITE);
+//            menuVector.at(k)->setColor(Color3B::WHITE);
+//            log("Before Popping Vector: tag %d",tag);
+//            menuVector.clear();
+////            menuVector.pop_back();
+////            menuVector.pop_back();
+//
+//            log("After Popping Vector: tag %d",tag);
+//            k=0;
+//            i=0;
+//            break;
+//        }
+//        else if(i>0 && menuVector.at(k-1)->getColor()==menuVector.at(k)->getColor())
+//        {
+//            log("Before Popping Vector: tag %d",tag);
 //            menuVector.at(k-1)->setEnabled(false);
 //            menuVector.at(k)->setEnabled(false);
+////            count+=2;
+//            menuVector.clear();
+////            menuVector.pop_back();
+////            menuVector.pop_back();
+//
+//
+//            log("After Popping Vector: tag %d",tag);
+//            k=0;
+//            i=0;
+//            break;
 //        }
-        if(i>0 && menuVector.at(k-1)->getColor()!=menuVector.at(k)->getColor())
-        {
-            menuVector.at(k-1)->setEnabled(true);
-            menuVector.at(k)->setEnabled(true);
-            menuVector.at(k-1)->setColor(Color3B::WHITE);
-            menuVector.at(k)->setColor(Color3B::WHITE);
-            log("Before Popping Vector: tag %d",tag);
-            menuVector.clear();
-//            menuVector.pop_back();
-//            menuVector.pop_back();
-
-            log("After Popping Vector: tag %d",tag);
-            k=0;
-            i=0;
-            break;
-        }
-        else if(i>0 && menuVector.at(k-1)->getColor()==menuVector.at(k)->getColor())
-        {
-            log("Before Popping Vector: tag %d",tag);
-            menuVector.at(k-1)->setEnabled(false);
-            menuVector.at(k)->setEnabled(false);
-//            count+=2;
-            menuVector.clear();
-//            menuVector.pop_back();
-//            menuVector.pop_back();
-
-
-            log("After Popping Vector: tag %d",tag);
-            k=0;
-            i=0;
-            break;
-        }
-        if(i==0)
-        {
-            i=1;
-            break;
-        }
-        log("Iterating Loop");
-    }
-
-    for(int p=0;p<16;p++)
-    {
-        if(!menuVector1.at(p)->isEnabled())
-        {
-            count++;
-        }
-    }
-    if(count==16)
-    {
-        label4->setString("!!! GAME OVER !!!");
-    }
-    else if(count!=16)
-    {
-        count=0;
-    }
+//        if(i==0)
+//        {
+//            i=1;
+//            break;
+//        }
+//        log("Iterating Loop");
+//    }
+//
+//    for(int p=0;p<16;p++)
+//    {
+//        if(!menuVector1.at(p)->isEnabled())
+//        {
+//            count++;
+//        }
+//    }
+//    if(count==16)
+//    {
+//        label4->setString("!!! GAME OVER !!!");
+//    }
+//    else if(count!=16)
+//    {
+//        count=0;
+//    }
 //    if(count==16)
 //    {
 //

@@ -38,7 +38,7 @@ using namespace std;
 class HelloWorld : public cocos2d::Scene
 {
 private:
-    Label *label3,*label4,*label5,*label2,*label6;
+    Label *label3,*label4,*label5,*label2,*label6,*label;
     MenuItemImage *menuItemImage,*menuItemImage1,*menuItemImage2,*menuItemImage3;
     int a,b,count,c ;
     float per;
@@ -47,6 +47,7 @@ private:
     MoveTo *moveTo,*moveTo1;
     Vec2 posinitial,point3;
     ProgressTimer *progressTimer;
+    PageView *pageView;
     vector<Sprite*> sprVector;
     vector<int> intVector;
     std::vector<MenuItemImage*> menuVector,menuVector1;

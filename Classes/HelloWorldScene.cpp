@@ -30,7 +30,16 @@ bool HelloWorld::init() {
 //        sprVector.push_back(spr);
 
 //    LayerColor *layer = LayerColor::create(Color4B::BLACK);
-//    this->addChild(layer);
+//    Sprite *sky = Sprite::create("nightsky.png");
+//    layer->addChild(sky);
+//    layer->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.5));
+//    this->addChild(layer,0);
+//
+//    Layer *layer1 = Layer::create();
+//    Sprite *terrain = Sprite::create("Terrain.png");
+//    layer1->addChild(terrain);
+//    layer1->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*0));
+//    layer->addChild(layer1,1);
 
 //
 //    ParticleGalaxy *fire = ParticleGalaxy::createWithTotalParticles(100);
@@ -724,45 +733,254 @@ bool HelloWorld::init() {
 //        }
 //    }
 
+//    menuItemImage = MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage->setPosition(Vec2(visibleSize.width*.2,visibleSize.height*0.50));
+//    menuItemImage->setTag(1);
+//    menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+//    menuItemImage->setEnabled(false);
+//
+//    label = Label::createWithTTF("<=","fonts/arial.ttf",30);
+//    label->setPosition(Vec2(visibleSize.width*.2,visibleSize.height*0.5));
+//    label->setColor(Color3B::BLACK);
+//    this->addChild(label,2);
+//
+//    menuItemImage1 = MenuItemImage::create("Scale_9_Sprite.png","Scale_9_Sprite.png",CC_CALLBACK_1(HelloWorld::callFunction,this));
+//    menuItemImage1->setPosition(Vec2(visibleSize.width*1,visibleSize.height*0.5));
+//    menuItemImage1->setTag(2);
+//
+//    label2 = Label::createWithTTF("=>","fonts/arial.ttf",30);
+//    label2->setPosition(Vec2(visibleSize.width*1,visibleSize.height*0.5));
+//    label2->setColor(Color3B::BLACK);
+//    this->addChild(label2,2);
+//
+//    Menu *menu = Menu::create(menuItemImage,menuItemImage1, nullptr);
+//    menu->setPosition(Vec2(0,0));
+//    this->addChild(menu);
+//
 
-    Size pageViewSize(Vec2(visibleSize.width*4,visibleSize.height*.9));
-    Size pageSize(Vec2(visibleSize.width,visibleSize.height));
-    PageView *pageView = PageView::create();
-    pageView->setDirection(PageView::Direction::HORIZONTAL);
-//    pageView->setMagneticType(ListView::MagneticType::CENTER);
-//    pageView->setGravity(ListView::Gravity::CENTER_HORIZONTAL);
-    pageView->setContentSize(pageViewSize);
-    pageView->setBounceEnabled(true);
-    pageView->setClippingEnabled(true);
-//    pageView->setPosition((widgetSize - pageView->getContentSize()) / 2.0f);
-    pageView->setItemsMargin(35);
-//    Size backgroundSize = background->getContentSize();
-    pageView->setPosition(Vec2(visibleSize.width*.08,visibleSize.height*.08));
-    pageView->removeAllItems();
-    pageView->setGlobalZOrder(200);
-    this->addChild(pageView);
+/**********PAGEVIEW**************/
 
-    for(int i=1;i<5;++i)
-    {
-        Layout *layout = Layout::create();
-        layout->setContentSize(pageSize);
-        ImageView *imageView = ImageView::create("mole 04.jpg");
-        imageView->setScale9Enabled(false);
-        imageView->setContentSize(pageSize);
-        imageView->setPosition(Vec2(layout->getContentSize().width*.5,layout->getContentSize().height*.5));
-        layout->addChild(imageView);
 
-        Text *label = Text::create(StringUtils::format("Page %d",i),"fonts/arial.ttf",30);
-        label->setColor(Color3B(192,192,192));
-        label->setPosition(Vec2(layout->getContentSize().width*.5,layout->getContentSize().height*.8));
-        layout->addChild(label);
-        pageView->addChild(layout);
-    }
+//    Size pageViewSize(Vec2(visibleSize.width*.6,visibleSize.height*.9));
+//    Size pageSize(Vec2(visibleSize.width*.6,visibleSize.height*.9));
+//    pageView = PageView::create();
+//    pageView->setDirection(PageView::Direction::HORIZONTAL);
+////    pageView->setMagneticType(ListView::MagneticType::CENTER);
+////    pageView->setGravity(ListView::Gravity::CENTER_HORIZONTAL);
+//    pageView->setContentSize(pageViewSize);
+//    pageView->setBounceEnabled(true);
+//    pageView->setClippingEnabled(true);
+////    pageView->setPosition((widgetSize - pageView->getContentSize()) / 2.0f);
+//    pageView->setItemsMargin(35);
+////    Size backgroundSize = background->getContentSize();
+//    pageView->setPosition(Vec2(visibleSize.width*.3,visibleSize.height*.08));
+//    pageView->removeAllItems();
+//    pageView->setGlobalZOrder(200);
+//    pageView->addEventListener([&](cocos2d::Ref* pSender, cocos2d::ui::PageView::EventType type)
+//                               {
+//                                   log("Inside Event Listener5");
+//                                   if (type == PageView::EventType::TURNING){
+//                                       log("Inside Event Listener4");
+////                                       if(pageView->getCurrentPageIndex()==1)
+////                                       {
+////                                           menuItemImage->setEnabled(true);
+////                                           menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+////                                           log("Inside Event Listener1");
+////                                           log("Current page Index: %d",pageView->getCurrentPageIndex());
+////                                       }
+//                                       if(pageView->getCurrentPageIndex()==0)
+//                                       {
+//                                           menuItemImage->setEnabled(false);
+//                                           menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+//                                           log("Inside Event Listener1");
+//                                           log("Current page Index: %d",pageView->getCurrentPageIndex());
+//                                       }
+//                                       else if(pageView->getCurrentPageIndex()==3)
+//                                       {
+//                                           menuItemImage1->setEnabled(false);
+//                                           menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+//                                           log("Inside Event Listener2");
+//                                           log("Current page Index: %d",pageView->getCurrentPageIndex());
+//                                       }
+//                                       else
+//                                       {
+//                                           menuItemImage1->setEnabled(true);
+//                                           menuItemImage->setEnabled(true);
+//                                           menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+//                                           menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+//                                           log("Inside Event Listener3");
+//                                           log("Current page Index: %d",pageView->getCurrentPageIndex());
+//                                       }
+//
+//
+//                                   } return;
+//                                   //or something else you want to do to //selected image at pageView
+//                               });
+//    this->addChild(pageView);
+//
+//    for(int i=1;i<5;++i)
+//    {
+//        Layout *layout = Layout::create();
+//        layout->setContentSize(pageSize);
+//        ImageView *imageView = ImageView::create("mole 04.jpg");
+//        imageView->setScale9Enabled(false);
+//        imageView->setContentSize(pageSize);
+//        imageView->setPosition(Vec2(layout->getContentSize().width*.5,layout->getContentSize().height*.5));
+//        layout->addChild(imageView);
+//
+//        Text *label = Text::create(StringUtils::format("Page %d",i),"fonts/arial.ttf",30);
+//        label->setColor(Color3B(192,192,192));
+//        label->setPosition(Vec2(layout->getContentSize().width*.5,layout->getContentSize().height*.8));
+//        layout->addChild(label);
+//        pageView->addChild(layout);
+//    }
 //    pageView->scrollToItem(3);
 
 
+/********CHECKBOX******************/
+
+//    auto checkbox = CheckBox::create("check_box_normal.png",
+//                                     "check_box_normal_press.png",
+//                                     "check_box_active.png",
+//                                     "check_box_normal_disable.png",
+//                                     "check_box_active_disable.png");
+//
+//    checkbox->addTouchEventListener([&](Ref* sender, Widget::TouchEventType type){
+//        switch (type)
+//        {
+//            case ui::Widget::TouchEventType::BEGAN:
+//                break;
+//            case ui::Widget::TouchEventType::ENDED:
+//                log("checkbox 1 clicked");
+//                break;
+//            default:
+//                break;
+//        }
+//    });
+//    checkbox->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.5));
+//    checkbox->setEnabled(false);
+//    checkbox->setScale(.5);
+//    checkbox->setSelected(true);
+//    checkbox->setColor(Color3B::WHITE);
+//    checkbox->setTouchEnabled(false);
+//    layer->addChild(checkbox,1);
+
+/*****************BUTTON**********************/
+
+//    auto button = Button::create("Scale_9_Sprite.png", "Scale_9_Sprite (copy).png", "Scale_9_Sprite12.png");
+//
+//    button->setTitleText("Press");
+//    button->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.5));
+//
+//    button->addTouchEventListener([&](Ref* sender, Widget::TouchEventType type){
+//        switch (type)
+//        {
+//            case ui::Widget::TouchEventType::BEGAN:
+//                break;
+//            case ui::Widget::TouchEventType::ENDED:
+//                log("Button 1 clicked");
+//                break;
+//            default:
+//                break;
+//        }
+//    });
+//
+//    this->addChild(button);
+
+/****************TEXTFIELD****************/
+
+//    auto textField = TextField::create("Text Field","fonts/arial.ttf",30);
+//
+//    textField->addTouchEventListener([&](Ref* sender, Widget::TouchEventType type){
+//        log("editing a TextField");
+//    });
+//    textField->setPosition(Vec2(visibleSize.width*.5,visibleSize.height*.5));
+//    textField->setColor(Color3B::MAGENTA);
+//    textField->setTextColor(Color4B::BLUE);
+//    layer->addChild(textField);
+
+/****************PARALLAX******************/
+
+//
+//    Sprite *background = Sprite::create("Moon.png");
+//    background->setScale(.5);
+//    Sprite *middle_layer = Sprite::create("mountain.png");
+//    middle_layer->setScale(.4);
+//    middle_layer->setScaleX(1.1);
+//    Sprite *top_layer = Sprite::create("trees.png");
+//// create ParallaxNode
+//    auto paraNode = ParallaxNode::create();
+//
+//// background image is moved at a ratio of 0.4x, 0.5y
+//    paraNode->addChild(background, -1, Vec2(0.4f,0.5f), Vec2(visibleSize.width*.5,visibleSize.height*.8));
+//
+//// tiles are moved at a ratio of 2.2x, 1.0y
+//    paraNode->addChild(middle_layer, 1, Vec2(2.2f,1.0f), Vec2(visibleSize.width*.5,visibleSize.height*.5) );
+//
+//// top image is moved at a ratio of 3.0x, 2.5y
+//    paraNode->addChild(top_layer, 2, Vec2(3.0f,2.5f), Vec2(visibleSize.width*.8,visibleSize.height*.3) );
+//
+//    this->addChild(paraNode);
+//
+//    MoveBy *moveTo = MoveBy::create(5,Vec2(paraNode->getPositionX()-200,paraNode->getPositionY()));
+//    paraNode->runAction(moveTo);
 
 
+/*******************PHYSICS******************/
+
+//// create a static PhysicsBody
+//    auto physicsBody = PhysicsBody::createBox(Size(65.0f , 81.0f ), PhysicsMaterial(0.1f, 1.0f, 0.0f));
+//    physicsBody->setDynamic(false);
+//
+//// create a sprite
+//    auto sprite = Sprite::create("whiteSprite.png");
+//    sprite->setPosition(Vec2(400, 400));
+//
+//// sprite will use physicsBody
+//    sprite->addComponent(physicsBody);
+//
+////add contact event listener
+//    auto contactListener = EventListenerPhysicsContact::create();
+//    contactListener->onContactBegin = CC_CALLBACK_1(HelloWorld::onContactBegin, this);
+//    _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
+//
+//
+//    Vec2 s_centre = Vec2(visibleSize.width/2, visibleSize.height/2);
+//
+//    PhysicsBody *physicsBody = PhysicsBody::createBox(Size(65.0f, 81.0f),
+//                                              PhysicsMaterial(0.1f, 1.0f, 0.0f));
+//    physicsBody->setDynamic(false);
+//
+////create a sprite
+//    Sprite *sprite = Sprite::create("mole 04.jpg");
+//    sprite->setPosition(s_centre);
+//    this->addChild(sprite);
+//    log("Creating Static Sprite");
+////apply physicsBody to the sprite
+//    sprite->addComponent(physicsBody);
+//
+////add five dynamic bodies
+//    for (int i = 0; i < 5; ++i)
+//    {
+//        PhysicsBody *physicsBody = PhysicsBody::createBox(Size(65.0f, 81.0f),
+//                                             PhysicsMaterial(0.1f, 1.0f, 0.0f));
+//
+//        //set the body isn't affected by the physics world's gravitational force
+//        physicsBody->setGravityEnable(false);
+//
+//        //set initial velocity of physicsBody
+//        physicsBody->setVelocity(Vec2(cocos2d::random(-500,500),cocos2d::random(-500,500)));
+//        physicsBody->setTag(10);
+//
+//        Sprite *sprite = Sprite::create("bomb 03.png");
+//        sprite->setPosition(Vec2(s_centre.x + cocos2d::random(-300,300),
+//                                 s_centre.y + cocos2d::random(-300,300)));
+//        sprite->addComponent(physicsBody);
+//        log("Creating Dynamic Sprite");
+//        this->addChild(sprite);
+//        log("Adding Dynamic Sprite");
+//    }
+//
 
     return true;
 }
@@ -1155,6 +1373,7 @@ void  HelloWorld::callFunction1(){
 }
 int j=-1;
 int i=0;
+
 int k=0;
 int count=0;
 void HelloWorld::callFunction(Ref *ref) {
@@ -1163,6 +1382,60 @@ void HelloWorld::callFunction(Ref *ref) {
 
     MenuItemImage *menuItemImage4 = (MenuItemImage*)ref;
     int tag = menuItemImage4->getTag();
+
+    if(tag==1)
+    {
+//        menuItemImage1->setEnabled(true);
+//        menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+
+
+        if(menuItemImage->isEnabled())
+        {
+//            i--;
+            menuItemImage1->setEnabled(true);
+            menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+            pageView->scrollToPage(pageView->getCurrentPageIndex()-1);
+            log("Current page Index: %d",pageView->getCurrentPageIndex());
+//            if(pageView->getCurrentPageIndex()==1)
+//            {
+//                menuItemImage->setEnabled(false);
+//                menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+//            }
+//            else
+//            {
+//                menuItemImage->setEnabled(true);
+//                menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+//            }
+        }
+    }
+    else if(tag==2)
+    {
+//        menuItemImage->setEnabled(true);
+//        menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+
+        if(menuItemImage1->isEnabled())
+        {
+//            i++;
+            menuItemImage->setEnabled(true);
+            menuItemImage->setNormalImage(Sprite::create("Scale_9_Sprite.png"));
+            if(pageView->getCurrentPageIndex()==-1)
+            {
+                pageView->scrollToPage(1);
+                log("Button 2 pressed, Current Page Index: %d",pageView->getCurrentPageIndex());
+            }
+            else{
+                pageView->scrollToPage(pageView->getCurrentPageIndex()+1);
+                log("Button 2 pressed, Current Page Index: %d",pageView->getCurrentPageIndex());
+            }
+
+//            if(pageView->getCurrentPageIndex()==3)
+//            {
+//                menuItemImage1->setEnabled(false);
+//                menuItemImage1->setNormalImage(Sprite::create("Scale_9_Sprite12.png"));
+//            }
+
+        }
+    }
 
 //    if(tag==0)
 //    {
